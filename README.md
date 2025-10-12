@@ -1,2 +1,3 @@
 # tasks.how
-A “distributed” Task Managment system for my own experimentation.
+
+A “distributed” Task Management system for my own experimentation.
