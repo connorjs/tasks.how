@@ -9,7 +9,8 @@ rather than “a monorepo is the right decision for this.”_
 
 The repository’s follows an “Organize by feature, not by layer” strategy
 that emphasizes vertical slicing where it makes sense.
-It intentionally does not use Team-based directory structure to simplify ownership change.
+It intentionally does not use a team-based directory structure,
+which can simplify ownership change.
 
 At the root, we have the following directories.
 
@@ -22,12 +23,12 @@ At the root, we have the following directories.
 ### Common directory
 
 Contains all cross-cutting code that are **not owned by a single domain or experience**.
-Anything here is considered *infrastructure-level* or *shared dependency* code:
+Consider everything here as *infrastructure-level* or *shared dependency* code:
 reusable, versioned, and stable.
 
-Shared code follows these design principles.
+Common code follows these design principles.
 
-- Shared code **must never import from domains or experiences**.
+- Shared code MUST NOT import from domains or experiences.
 - Changes here ripple across the entire system: prefer explicit versioning.
 - Avoid “miscellaneous utils” - if something is only used in one place, keep it local.
 - Treat `/common` as the **foundation layer** for all other directories.
@@ -48,25 +49,25 @@ Other services or experiences consume them via generated clients.
 
 ### Experiences directory
 
-Vertical “feature slices” that pair a **BFF (Backend for Frontend)** with its corresponding **UI**.
+Vertical “feature slices” that pair a BFF (Backend for Frontend) with its corresponding UI.
 
-Each subfolder represents an end-user experience or product area.
+Each subdirectory represents an end-user experience or product area.
 These directories combine all the code that changes together for a given feature.
 
-The typical project pattern follows.
+The following shows the typical project pattern.
 
 - `*.bff` - .NET Minimal API shaping data for the UI.
 - `*.ui` - React (Vite + TypeScript) front-end application.
 - Shared view models and API clients are defined locally or imported from generated packages.
 
-This structure keeps **feature and UI layers co-located**,
+This structure keeps feature and UI layers co-located,
 promoting vertical ownership and faster iteration.
 
 ### Teams directory
 
 Documentation of ownership, architectural decisions, and context for each team.
 
-Each team has its own subfolder that may contain the following.
+Each team has its own directory that may contain the following.
 
 - `README.md` - Describes mission, boundaries, and responsibilities.
 - `adrs/` - Lightweight architecture decision records.
