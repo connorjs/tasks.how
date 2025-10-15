@@ -1,0 +1,8 @@
+<Project>
+	<!-- Override `ProjectName` to include `core` (which means “Core domains”). -->
+	<PropertyGroup>
+		<ProjectName>core.$(MSBuildProjectName)</ProjectName>
+	</PropertyGroup>
+	<!-- Import root `Directory.Build.props`. -->
+	<Import Project="$([MSBuild]::GetPathOfFileAbove('Directory.Build.props', '$(MSBuildThisFileDirectory)../'))" />
+</Project>

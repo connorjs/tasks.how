@@ -1,5 +1,5 @@
 <Solution>
-	<Folder Name="/Solution items/">
+	<Folder Name="/① Solution items/">
 		<File Path=".editorconfig" />
 		<File Path=".gitignore" />
 		<File Path=".globalconfig" />
@@ -7,13 +7,26 @@
 		<File Path="global.json" />
 		<File Path="README.md" />
 		<File Path="Directory.Build.props" />
+		<File Path="common\Directory.Build.props" />
+		<File Path="domains\Directory.Build.props" />
 		<File Path="Directory.Packages.props" />
 	</Folder>
-	<Folder Name="/Solution items/.config/">
+	<Folder Name="/① Solution Items/.config/">
 		<File Path=".config\dotnet-tools.json" />
 	</Folder>
-	<Folder Name="/Solution items/.github/">
+	<Folder Name="/① Solution Items/.github/">
 		<File Path=".github\workflows\pipeline.yaml" />
 	</Folder>
-	<Project Path="teams\teams.csproj" />
+	<Folder Name="/② Common/">
+		<Project Path="common\hosting.api\hosting.api.csproj" />
+		<Project Path="common\sdk\sdk.csproj" />
+	</Folder>
+	<Folder Name="/③ Domains/">
+		<Project Path="domains\example.api\example.api.csproj" />
+	</Folder>
+	<Folder Name="/④ Experiences/" />
+	<Folder Name="/⑤ Tools/" />
+	<Folder Name="/⑥ Teams/">
+		<Project Path="teams\teams.csproj" />
+	</Folder>
 </Solution>

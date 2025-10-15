@@ -1,0 +1,8 @@
+<Project>
+	<!-- Override `ProjectName` to include `common`. -->
+	<PropertyGroup>
+		<ProjectName>common.$(MSBuildProjectName)</ProjectName>
+	</PropertyGroup>
+	<!-- Import root `Directory.Build.props`. -->
+	<Import Project="$([MSBuild]::GetPathOfFileAbove('Directory.Build.props', '$(MSBuildThisFileDirectory)../'))" />
+</Project>

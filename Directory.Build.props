@@ -1,71 +1,28 @@
 <Project>
 	<!--
+	Note: This would normally happen “automatically’ in a polyrepo + reference to `connorjs.taskshow.common.sdk`.
+	However, due to the monorepo experimentation, we reference it directly.
+	-->
+	<Import Project="$(MSBuildThisFileDirectory)common\sdk\build\sdk.props" />
+	<!--
+	Create `ProjectName` property for `common` (or others) to override.
+	-->
+	<PropertyGroup>
+		<ProjectName Condition="'$(ProjectName)' == ''">$(MSBuildProjectName)</ProjectName>
+	</PropertyGroup>
+	<!--
 	Use artifacts directory for all build outputs.
 	-->
 	<PropertyGroup>
-		<UseArtifactsOutput>true</UseArtifactsOutput>
+		<ProjectArtifacts>$(MSBuildThisFileDirectory)artifacts\$(ProjectName)\</ProjectArtifacts>
+		<BaseIntermediateOutputPath>$(ProjectArtifacts)obj\</BaseIntermediateOutputPath>
+		<BaseOutputPath>$(ProjectArtifacts)bin\</BaseOutputPath>
 	</PropertyGroup>
 	<!--
 	Ensure all projects share root namespace.
 	-->
 	<PropertyGroup>
-		<AssemblyName>Connorjs.Taskshow.$(MSBuildProjectName)</AssemblyName>
-		<RootNamespace>Connorjs.Taskshow.$(MSBuildProjectName)</RootNamespace>
-	</PropertyGroup>
-	<!--
-	.NET target framework and related properties.
-	-->
-	<PropertyGroup>
-		<TargetFramework>net10.0</TargetFramework>
-		<SuppressNETCoreSdkPreviewMessage>true</SuppressNETCoreSdkPreviewMessage>
-	</PropertyGroup>
-	<!--
-	Reference-related properties
-	-->
-	<PropertyGroup>
-		<DisableTransitiveProjectReferences>true</DisableTransitiveProjectReferences>
-		<ImplicitUsings>disable</ImplicitUsings>
-	</PropertyGroup>
-	<!--
-	C# compiler options
-	-->
-	<PropertyGroup>
-		<CheckForOverflowUnderflow>true</CheckForOverflowUnderflow>
-		<Nullable>enable</Nullable>
-		<Deterministic>true</Deterministic>
-	</PropertyGroup>
-	<!--
-	Analyzers: Main configuration
-	-->
-	<PropertyGroup>
-		<GenerateDocumentationFile>true</GenerateDocumentationFile>
-		<AnalysisMode>Recommended</AnalysisMode>
-		<AnalysisLevel>10.0</AnalysisLevel>
-		<CodeAnalysisTreatWarningsAsErrors>true</CodeAnalysisTreatWarningsAsErrors>
-		<EnableNETAnalyzers>true</EnableNETAnalyzers>
-		<EnforceCodeStyleInBuild>true</EnforceCodeStyleInBuild>
-	</PropertyGroup>
-	<!--
-	Analyzers: C# compiler configuration
-	-->
-	<PropertyGroup>
-		<!--
-		1. Default all warns to errors (`TreatWarningsAsErrors`).
-		2. Allow some warns back to warns (`WarningsNotAsErrors`). For example,
-			 a new warning has appeared that broke the build and we need time to
-			 fix it. These SHOULD include an issue link.
-		3. Suppress some warns completely (`NoWarn`). For example, a warning
-			 with which we disagree. These MUST include a comment explaining why.
-		-->
-		<TreatWarningsAsErrors>true</TreatWarningsAsErrors>
-		<WarningsNotAsErrors />
-		<NoWarn />
-	</PropertyGroup>
-	<!--
-	Analyzers: Debug builds.
-	-->
-	<PropertyGroup Condition="'$(Configuration)' == 'Debug'">
-		<!-- Turn off “warnings as errors” during debug builds to allow incremental fixes. -->
-		<TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+		<AssemblyName>connorjs.taskshow.$(ProjectName)</AssemblyName>
+		<RootNamespace>connorjs.taskshow.$(ProjectName)</RootNamespace>
 	</PropertyGroup>
 </Project>
