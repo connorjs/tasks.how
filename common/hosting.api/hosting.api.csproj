@@ -13,8 +13,8 @@
 		<PackageLicenseFile>LICENSE</PackageLicenseFile>
 	</PropertyGroup>
 	<ItemGroup>
-		<None Include="../../../LICENSE" Pack="true" Visible="false" PackagePath="" />
-		<None Include="../README.md" Pack="true" Visible="false" PackagePath="" />
+		<None Include="../../LICENSE" Pack="true" Visible="false" PackagePath="" />
+		<None Include="./README.md" Pack="true" Visible="false" PackagePath="" />
 		<EmbeddedResource Include="appsettings.defaults.json">
 			<LogicalName>appsettings.defaults.json</LogicalName>
 		</EmbeddedResource>

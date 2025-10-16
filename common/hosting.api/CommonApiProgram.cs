@@ -1,21 +1,14 @@
 using System.Threading.Tasks;
 using connorjs.taskshow.common.hosting.api.extensions;
-using JetBrains.Annotations;
 using Microsoft.AspNetCore.Builder;
 
 namespace connorjs.taskshow.common.hosting.api;
 
 /// <summary>
-/// The entry-point for `connorjs.taskshow.common.hosting.api`.
+/// The entry-point for <c>connorjs.taskshow.common.hosting.api</c>.
 /// </summary>
 public static class CommonApiProgram
 {
-	/// <summary>
-	/// The options to configure the API program.
-	/// </summary>
-	[UsedImplicitly]
-	public sealed record Options { }
-
 	/// <summary>
 	/// Creates and runs the <see cref="WebApplication"/> with common configuration.
 	/// </summary>

@@ -14,7 +14,7 @@
 	</PropertyGroup>
 	<ItemGroup>
 		<None Include="../../../LICENSE" Pack="true" Visible="false" PackagePath="" />
-		<None Include="../README.md" Pack="true" Visible="false" PackagePath="" />
+		<None Include="README.md" Pack="true" Visible="false" PackagePath="" />
 		<None Include="build/**" Pack="True" PackagePath="build/" />
 	</ItemGroup>
 	<!-- This would normally include `SonarAnalyzer.CSharp`, but we use `GlobalPackageReference` at root for monorepo. -->
