@@ -4,7 +4,7 @@ Common hosting package for .NET APIs.
 Centralizes shared configuration and start-up code for APIs.
 
 _Note: This package is structured to showcase a NuGet package existing in a polyrepo situation.
-However, given this repository actually exists as a monorepo, the sdk files are “directly referenced” from the root._
+However, given this repository actually exists as a monorepo, consumers reference this via `ProjectReference` in their `.csproj` files._
 
 ## Details
 
