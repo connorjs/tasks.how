@@ -1,0 +1,32 @@
+<Project Sdk="Microsoft.NET.Sdk">
+	<PropertyGroup>
+		<EnablePackageValidation>true</EnablePackageValidation>
+	</PropertyGroup>
+	<PropertyGroup>
+		<PackageId>connorjs.taskshow.common.hosting.api</PackageId>
+		<Authors>Connor Sullivan</Authors>
+		<Description>connorjs.taskshow’s common hosting package for .NET APIs</Description>
+		<DevelopmentDependency>false</DevelopmentDependency>
+		<PackageProjectUrl>https://github.com/connorjs/taskshow/common/hosting.api#readme</PackageProjectUrl>
+		<PackageReadmeFile>README.md</PackageReadmeFile>
+		<PackageTags>dotnet hosting api fast-endpoints scalar</PackageTags>
+		<PackageLicenseFile>LICENSE</PackageLicenseFile>
+	</PropertyGroup>
+	<ItemGroup>
+		<None Include="../../LICENSE" Pack="true" Visible="false" PackagePath="" />
+		<None Include="./README.md" Pack="true" Visible="false" PackagePath="" />
+		<EmbeddedResource Include="appsettings.defaults.json">
+			<LogicalName>appsettings.defaults.json</LogicalName>
+		</EmbeddedResource>
+		<EmbeddedResource Include="appsettings.defaults.Development.json">
+			<LogicalName>appsettings.defaults.Development.json</LogicalName>
+		</EmbeddedResource>
+	</ItemGroup>
+	<ItemGroup>
+		<PackageReference Include="FastEndpoints" />
+		<PackageReference Include="FastEndpoints.Swagger" />
+		<PackageReference Include="JetBrains.Annotations" />
+		<PackageReference Include="Scalar.AspNetCore" />
+		<PackageReference Include="Scalar.AspNetCore.Microsoft" />
+	</ItemGroup>
+</Project>

@@ -3,6 +3,7 @@ artifacts/
 
 
 # JetBrains
+*.user
 .idea/*
 !.idea/.idea.*
 .idea/.idea.*/.idea/*

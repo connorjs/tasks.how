@@ -167,7 +167,7 @@ Responsible for relevance, facets, and query performance.
 
 (Full-stack)
 
-### Notes
+### Team notes
 
 - The Magpies, Lynx, Goose Squadron, and Bowser Works each own a distinct **UI + BFF** pairing,
   which enables independent deploys and type-safe contracts.

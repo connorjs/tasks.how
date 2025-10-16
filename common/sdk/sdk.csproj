@@ -1,0 +1,21 @@
+<Project Sdk="Microsoft.NET.Sdk">
+	<PropertyGroup>
+		<EnablePackageValidation>true</EnablePackageValidation>
+	</PropertyGroup>
+	<PropertyGroup>
+		<PackageId>connorjs.taskshow.common.sdk</PackageId>
+		<Authors>Connor Sullivan</Authors>
+		<Description>connorjs.taskshow’s common SDK for .NET projects</Description>
+		<DevelopmentDependency>true</DevelopmentDependency>
+		<PackageProjectUrl>https://github.com/connorjs/taskshow/common/sdk#readme</PackageProjectUrl>
+		<PackageReadmeFile>README.md</PackageReadmeFile>
+		<PackageTags>dotnet sdk analyzers csharp csharpier lint sonar</PackageTags>
+		<PackageLicenseFile>LICENSE</PackageLicenseFile>
+	</PropertyGroup>
+	<ItemGroup>
+		<None Include="../../../LICENSE" Pack="true" Visible="false" PackagePath="" />
+		<None Include="./README.md" Pack="true" Visible="false" PackagePath="" />
+		<None Include="build/**" Pack="True" PackagePath="build/" />
+	</ItemGroup>
+	<!-- This would normally include `SonarAnalyzer.CSharp`, but we use `GlobalPackageReference` at root for monorepo. -->
+</Project>
