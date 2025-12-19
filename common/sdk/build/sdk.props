@@ -17,7 +17,6 @@
 	-->
 	<PropertyGroup>
 		<TargetFramework Condition="$(TargetFramework) == ''">net10.0</TargetFramework>
-		<SuppressNETCoreSdkPreviewMessage>true</SuppressNETCoreSdkPreviewMessage>
 	</PropertyGroup>
 	<!--
 	Interceptors feature.
