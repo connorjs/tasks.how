@@ -5,16 +5,17 @@
 	-->
 	<Import Project="$(MSBuildThisFileDirectory)common\sdk\build\sdk.props" />
 	<!--
-	Use artifacts directory for all build outputs.
-	-->
-	<PropertyGroup>
-		<UseArtifactsOutput>true</UseArtifactsOutput>
-	</PropertyGroup>
-	<!--
 	Create `ProjectName` property for `common` (or others) to override.
 	-->
 	<PropertyGroup>
 		<ProjectName Condition="'$(ProjectName)' == ''">$(MSBuildProjectName)</ProjectName>
+	</PropertyGroup>
+	<!--
+	Use artifacts directory for all build outputs.
+	-->
+	<PropertyGroup>
+		<BaseIntermediateOutputPath>$(MSBuildThisFileDirectory)artifacts\$(ProjectName)\obj\</BaseIntermediateOutputPath>
+		<BaseOutputPath>$(MSBuildThisFileDirectory)artifacts\$(ProjectName)\bin\</BaseOutputPath>
 	</PropertyGroup>
 	<!--
 	Ensure all projects share root namespace.

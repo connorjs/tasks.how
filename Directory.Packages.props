@@ -3,14 +3,14 @@
 		<ManagePackageVersionsCentrally>true</ManagePackageVersionsCentrally>
 	</PropertyGroup>
 	<ItemGroup>
-		<PackageVersion Include="FastEndpoints" Version="7.0.1" />
-		<PackageVersion Include="FastEndpoints.Swagger" Version="7.0.1" />
-		<PackageVersion Include="JetBrains.Annotations" Version="2025.2.2" />
-		<PackageVersion Include="Scalar.AspNetCore" Version="2.9.0" />
-		<PackageVersion Include="Scalar.AspNetCore.Microsoft" Version="2.9.0" />
+		<PackageVersion Include="FastEndpoints" Version="7.1.1" />
+		<PackageVersion Include="FastEndpoints.Swagger" Version="7.1.1" />
+		<PackageVersion Include="JetBrains.Annotations" Version="2025.2.4" />
+		<PackageVersion Include="Scalar.AspNetCore" Version="2.11.8" />
+		<PackageVersion Include="Scalar.AspNetCore.Microsoft" Version="2.11.8" />
 	</ItemGroup>
 	<ItemGroup>
 		<!-- This would normally reference the `connorjs.taskshow.common.sdk package, but we simplify for monorepo. -->
-		<GlobalPackageReference Include="SonarAnalyzer.CSharp" Version="10.15.0.120848" />
+		<GlobalPackageReference Include="SonarAnalyzer.CSharp" Version="10.17.0.131074" />
 	</ItemGroup>
 </Project>
