@@ -1,0 +1,15 @@
+load("@rules_go//go:def.bzl", "go_library", "go_test")
+
+go_library(
+    name = "hello",
+    srcs = ["handler.go"],
+    importpath = "github.com/connorjs/tasks.how/domains/tasks.api/hello",
+    visibility = ["//visibility:public"],
+    deps = ["@com_github_go_chi_chi_v5//:chi"],
+)
+
+go_test(
+    name = "hello_test",
+    srcs = ["handler_test.go"],
+    embed = [":hello"],
+)

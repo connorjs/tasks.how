@@ -1,0 +1,121 @@
+:root {
+	--bg-top: #f4eee5;
+	--bg-bottom: #e6f0f2;
+	--ink: #13252c;
+	--muted: #47606a;
+	--panel: rgba(255, 255, 255, 0.78);
+	--stroke: rgba(19, 37, 44, 0.12);
+	--lane-signal: #d15a2f;
+	--lane-flow: #1f7a8c;
+	--lane-launch: #4f8f3c;
+	color: var(--ink);
+	font-family: 'Avenir Next', 'Segoe UI', sans-serif;
+}
+
+* {
+	box-sizing: border-box;
+}
+
+body {
+	margin: 0;
+	min-height: 100vh;
+	background:
+		radial-gradient(circle at top left, rgba(209, 90, 47, 0.18), transparent 28rem),
+		radial-gradient(circle at top right, rgba(31, 122, 140, 0.2), transparent 24rem),
+		linear-gradient(180deg, var(--bg-top), var(--bg-bottom));
+}
+
+.app-shell {
+	min-height: 100vh;
+	padding: 4rem 1.5rem 3rem;
+}
+
+.hero,
+.board {
+	margin: 0 auto;
+	max-width: 72rem;
+}
+
+.eyebrow {
+	margin: 0 0 0.75rem;
+	color: var(--muted);
+	font-size: 0.85rem;
+	font-weight: 700;
+	letter-spacing: 0.18em;
+	text-transform: uppercase;
+}
+
+.hero h1 {
+	margin: 0;
+	max-width: 10ch;
+	font-size: clamp(3rem, 8vw, 5.75rem);
+	line-height: 0.95;
+}
+
+.lede {
+	margin: 1.25rem 0 0;
+	max-width: 42rem;
+	color: var(--muted);
+	font-size: 1.1rem;
+	line-height: 1.6;
+}
+
+.board {
+	display: grid;
+	gap: 1.25rem;
+	margin-top: 2.5rem;
+}
+
+.lane {
+	border: 1px solid var(--stroke);
+	border-radius: 1.5rem;
+	background: var(--panel);
+	box-shadow: 0 1.5rem 3rem rgba(19, 37, 44, 0.08);
+	overflow: hidden;
+}
+
+.lane-header {
+	padding: 1rem 1.25rem;
+	border-bottom: 1px solid var(--stroke);
+	background: linear-gradient(
+		90deg,
+		color-mix(in srgb, var(--lane-accent) 20%, white),
+		transparent
+	);
+}
+
+.lane-header h2 {
+	margin: 0;
+	font-size: 1rem;
+}
+
+.lane-cards {
+	display: grid;
+	gap: 1rem;
+	padding: 1.25rem;
+}
+
+.card {
+	border-radius: 1rem;
+	padding: 1rem;
+	background: rgba(255, 255, 255, 0.92);
+	border-left: 0.35rem solid var(--lane-accent);
+}
+
+.card h3 {
+	margin: 0 0 0.45rem;
+	font-size: 1rem;
+}
+
+.card p {
+	margin: 0;
+	color: var(--muted);
+	line-height: 1.5;
+}
+
+@media (min-width: 800px) {
+	.board {
+		grid-template-columns: repeat(3, minmax(0, 1fr));
+		align-items: start;
+	}
+}

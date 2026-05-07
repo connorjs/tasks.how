@@ -1,0 +1,6 @@
+artifacts
+node_modules
+.cache
+bazel-bin
+bazel-out
+bazel-testlogs

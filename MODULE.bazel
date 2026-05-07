@@ -1,0 +1,47 @@
+module(
+    name = "tasks_how",
+)
+
+# Core language and ecosystem rules. Bazel 9 removed WORKSPACE, so everything here
+# is Bzlmod-native by design.
+bazel_dep(name = "aspect_rules_js", version = "3.0.3")
+bazel_dep(name = "aspect_rules_lint", version = "2.5.0")
+bazel_dep(name = "aspect_rules_ts", version = "3.8.8")
+bazel_dep(name = "buildifier_prebuilt", version = "8.5.1")
+bazel_dep(name = "gazelle", version = "0.50.0")
+bazel_dep(name = "rules_go", version = "0.60.0")
+bazel_dep(name = "rules_nodejs", version = "6.7.3")
+bazel_dep(name = "rules_shell", version = "0.8.0")
+
+node = use_extension("@rules_nodejs//nodejs:extensions.bzl", "node")
+node.toolchain(node_version_from_nvmrc = "//:.nvmrc")
+use_repo(node, "nodejs_toolchains")
+
+rules_ts_ext = use_extension("@aspect_rules_ts//ts:extensions.bzl", "ext", dev_dependency = True)
+rules_ts_ext.deps(ts_version_from = "//:package.json")
+use_repo(rules_ts_ext, "npm_typescript")
+
+npm = use_extension("@aspect_rules_js//npm:extensions.bzl", "npm")
+npm.npm_translate_lock(
+    name = "npm",
+    npm_package_lock = "//:package-lock.json",
+    npmrc = "//:.npmrc",
+    pnpm_lock = "//:pnpm-lock.yaml",
+)
+use_repo(npm, "npm")
+
+go_sdk = use_extension("@rules_go//go:extensions.bzl", "go_sdk")
+go_sdk.download(
+    name = "go_sdk",
+    version = "1.26.2",
+)
+use_repo(go_sdk, "go_sdk")
+
+register_toolchains("@go_sdk//:all")
+
+go_deps = use_extension("@gazelle//:extensions.bzl", "go_deps")
+go_deps.from_file(go_mod = "//domains/tasks.api:go.mod")
+use_repo(
+    go_deps,
+    "com_github_go_chi_chi_v5",
+)

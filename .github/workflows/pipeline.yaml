@@ -13,26 +13,30 @@ jobs:
     runs-on: ubuntu-latest
 
     permissions:
-      pull-requests: write
+      contents: read
 
     steps:
       - name: Checkout self
         uses: actions/checkout@v5
         with:
-          fetch-depth: 0 # Full depth (not shallow) for GitVersion
+          fetch-depth: 0
 
-      - name: Use .NET
-        uses: actions/setup-dotnet@v5
+      - name: Setup Bazel
+        uses: bazel-contrib/setup-bazel@0.15.0
         with:
-          global-json-file: global.json
+          bazelisk-cache: true
+          bazelisk-version: 1.x
+          disk-cache: ${{ github.workflow }}
+          external-cache: |
+            manifest:
+              npm: package-lock.json
+          repository-cache: true
 
-      - name: Restore
-        run: |
-          dotnet tool restore
-          dotnet restore
+      - name: Format check
+        run: bazel run //:format.check
 
-      - name: Format
-        run: dotnet csharpier check .
+      - name: Test
+        run: bazel test //...
 
       - name: Build
-        run: dotnet build --configuration Release --no-restore
+        run: bazel build //...

@@ -1,0 +1,65 @@
+load("@aspect_rules_lint//format:defs.bzl", "format_multirun")
+load("@gazelle//:def.bzl", "gazelle")
+load("@npm//:defs.bzl", "npm_link_all_packages")
+
+package(default_visibility = ["//visibility:public"])
+
+exports_files([
+    "eslint.config.mjs",
+    "tsconfig.base.json",
+])
+
+# A single root node_modules tree keeps JavaScript tooling predictable across
+# UI packages, lint rules, and one-off build actions.
+npm_link_all_packages(name = "node_modules")
+
+gazelle(
+    name = "gazelle",
+    args = ["-go_naming_convention=go_default_library"],
+)
+
+filegroup(
+    name = "starlark_files",
+    srcs = glob(
+        [
+            "**/*.bzl",
+            "**/BUILD.bazel",
+        ],
+        allow_empty = True,
+        exclude = [
+            ".cache/**",
+            "artifacts/**",
+        ],
+    ) + [
+        "MODULE.bazel",
+        "REPO.bazel",
+    ],
+)
+
+alias(
+    name = "lint",
+    actual = "//tools/lint:lint",
+)
+
+alias(
+    name = "typecheck",
+    actual = "//experiences/board/ui:ui_typecheck",
+)
+
+format_multirun(
+    name = "format",
+    css = "//tools/format:prettier",
+    go = "@aspect_rules_lint//format:gofumpt",
+    html = "//tools/format:prettier",
+    javascript = "//tools/format:prettier",
+    markdown = "//tools/format:prettier",
+    starlark = "@buildifier_prebuilt//:buildifier",
+)
+
+test_suite(
+    name = "unit",
+    tests = [
+        "//domains/tasks.api/hello:hello_test",
+        "//tools/lint",
+    ],
+)

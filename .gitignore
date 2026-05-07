@@ -1,5 +1,7 @@
 # Solution
 artifacts/
+.cache/
+bazel-*
 
 
 # JetBrains

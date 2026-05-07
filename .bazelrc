@@ -1,0 +1,9 @@
+common --announce_rc
+common --color=yes
+common --curses=yes
+common --enable_bzlmod
+
+build --show_result=20
+build --keep_going
+
+test --test_output=errors

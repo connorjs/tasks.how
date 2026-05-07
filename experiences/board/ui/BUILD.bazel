@@ -1,0 +1,93 @@
+load("@aspect_rules_js//js:defs.bzl", "js_binary")
+load("@aspect_rules_ts//ts:defs.bzl", "ts_project")
+
+package(default_visibility = ["//visibility:public"])
+
+filegroup(
+    name = "lint_srcs",
+    srcs = glob(
+        [
+            "src/*.ts",
+            "src/*.tsx",
+            "src/**/*.ts",
+            "src/**/*.tsx",
+        ],
+        allow_empty = True,
+    ),
+)
+
+filegroup(
+    name = "bundle_srcs",
+    srcs = glob(
+        [
+            "src/*",
+            "src/**/*",
+        ],
+        allow_empty = True,
+    ) + [
+        "index.html",
+        "tsconfig.json",
+    ],
+)
+
+ts_project(
+    name = "ui_typecheck",
+    srcs = glob(
+        [
+            "src/*.ts",
+            "src/*.tsx",
+            "src/**/*.ts",
+            "src/**/*.tsx",
+        ],
+        allow_empty = True,
+    ),
+    no_emit = True,
+    tsconfig = "tsconfig.json",
+    deps = [
+        "//:node_modules/@types/node",
+        "//:node_modules/@types/react",
+        "//:node_modules/@types/react-dom",
+        "//:node_modules/react",
+        "//:node_modules/react-dom",
+    ],
+)
+
+js_binary(
+    name = "esbuild_runner",
+    data = [
+        "//:node_modules/esbuild",
+        "//:node_modules/react",
+        "//:node_modules/react-dom",
+    ],
+    entry_point = "build.mjs",
+)
+
+genrule(
+    name = "ui_bundle",
+    srcs = [
+        "index.html",
+        "src/App.tsx",
+        "src/main.tsx",
+        "src/styles.css",
+        "tsconfig.json",
+        "//:node_modules/react",
+        "//:node_modules/react-dom",
+    ],
+    outs = [
+        "board.css",
+        "board.index.html",
+        "board.js",
+        "board.js.map",
+    ],
+    cmd = """
+set -euo pipefail
+export BAZEL_BINDIR=.
+"$(execpath :esbuild_runner)" \
+  "$(location src/main.tsx)" \
+  "$(location tsconfig.json)" \
+  "$(location index.html)" \
+  "$(@D)/board.js" \
+  "$(@D)/board.index.html"
+""",
+    tools = [":esbuild_runner"],
+)

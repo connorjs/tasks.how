@@ -1,0 +1,46 @@
+load("@npm//:eslint/package_json.bzl", eslint_bin = "bin")
+load("@rules_shell//shell:sh_test.bzl", "sh_test")
+
+package(default_visibility = ["//visibility:public"])
+
+eslint_bin.eslint_binary(
+    name = "eslint",
+)
+
+sh_test(
+    name = "buildifier_test",
+    srcs = ["buildifier_test.sh"],
+    args = [
+        "$(rootpath @buildifier_prebuilt//:buildifier)",
+    ],
+    data = [
+        "//:starlark_files",
+        "@buildifier_prebuilt//:buildifier",
+    ],
+)
+
+sh_test(
+    name = "eslint_test",
+    srcs = ["eslint_test.sh"],
+    args = [
+        "$(rootpath :eslint)",
+        "$(rootpath //:eslint.config.mjs)",
+    ],
+    data = [
+        ":eslint",
+        "//:eslint.config.mjs",
+        "//:node_modules/@eslint/js",
+        "//:node_modules/@typescript-eslint/eslint-plugin",
+        "//:node_modules/@typescript-eslint/parser",
+        "//:node_modules/eslint-plugin-react-hooks",
+        "//experiences/board/ui:lint_srcs",
+    ],
+)
+
+test_suite(
+    name = "lint",
+    tests = [
+        ":buildifier_test",
+        ":eslint_test",
+    ],
+)
