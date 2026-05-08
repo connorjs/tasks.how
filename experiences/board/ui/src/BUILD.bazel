@@ -1,0 +1,85 @@
+# gazelle:ignore
+# gazelle:ts_exclude main.tsx
+load("@rules_typescript//npm:defs.bzl", "node_modules")
+load("@rules_typescript//ts:defs.bzl", "css_library", "ts_compile", "ts_test")
+
+package(default_visibility = ["//visibility:public"])
+
+filegroup(
+    name = "lint_srcs",
+    srcs = glob(
+        [
+            "*.ts",
+            "*.tsx",
+            "**/*.ts",
+            "**/*.tsx",
+        ],
+        allow_empty = True,
+    ),
+)
+
+exports_files(["main.tsx"])
+
+css_library(
+    name = "styles",
+    srcs = ["styles.css"],
+    visibility = ["//visibility:public"],
+)
+
+ts_compile(
+    name = "app",
+    srcs = ["App.tsx"],
+    visibility = ["//visibility:public"],
+    deps = ["@npm//:react"],
+)
+
+ts_compile(
+    name = "main",
+    srcs = ["main.tsx"],
+    visibility = ["//visibility:public"],
+    deps = [
+        ":app",
+        ":styles",
+        "@npm//:react",
+        "@npm//:react-dom",
+        "@npm//:types_react-dom",
+    ],
+)
+
+node_modules(
+    name = "node_modules",
+    deps = [
+        "@npm//:happy-dom",
+        "@npm//:react",
+        "@npm//:react-dom",
+        "@npm//:testing-library_react",
+        "@npm//:vitest",
+    ],
+)
+
+ts_test(
+    name = "app_test",
+    srcs = ["App.test.tsx"],
+    config = "vitest.config.mjs",
+    environment = "happy-dom",
+    node_modules = ":node_modules",
+    deps = [
+        ":app",
+        "@npm//:happy-dom",
+        "@npm//:react",
+        "@npm//:react-dom",
+        "@npm//:testing-library_react",
+        "@npm//:vitest",
+    ],
+)
+
+filegroup(
+    name = "sources",
+    srcs = [
+        "App.tsx",
+        "main.tsx",
+        "styles.css",
+        "vitest.config.mjs",
+    ],
+    visibility = ["//visibility:public"],
+)

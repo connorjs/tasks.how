@@ -1,10 +1,11 @@
-load("@npm//:prettier/package_json.bzl", prettier_bin = "bin")
+load("@rules_shell//shell:sh_binary.bzl", "sh_binary")
 
 package(default_visibility = ["//visibility:public"])
 
-prettier_bin.prettier_binary(
+sh_binary(
     name = "prettier",
-    env = {
-        "BAZEL_BINDIR": ".",
-    },
+    srcs = ["prettier.sh"],
+    data = [
+        "@npm//:prettier_bin",
+    ],
 )

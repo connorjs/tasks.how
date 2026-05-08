@@ -1,4 +1,4 @@
-import type { CSSProperties } from 'react';
+import type { CSSProperties, ReactElement } from 'react';
 
 type BoardLane = {
 	name: string;
@@ -29,12 +29,14 @@ const lanes: BoardLane[] = [
 		accent: 'var(--lane-flow)',
 		cards: [
 			{
-				title: 'React + TypeScript',
-				detail: 'Type-checked with rules_ts so editor and CI speak the same language.',
+				title: 'rules_typescript',
+				detail:
+					'Oxc and tsgo keep the React slice fast without falling back to ambient node_modules.',
 			},
 			{
-				title: 'esbuild browser artifact',
-				detail: 'A small bundle target keeps the first UI example easy to inspect.',
+				title: 'Hermetic Vite bundle',
+				detail:
+					'The browser artifact now comes from the mikn ruleset instead of a hand-rolled esbuild bridge.',
 			},
 		],
 	},
@@ -54,7 +56,7 @@ const lanes: BoardLane[] = [
 	},
 ];
 
-export function App() {
+export function App(): ReactElement {
 	return (
 		<main className="app-shell">
 			<section className="hero">

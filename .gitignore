@@ -1,6 +1,7 @@
 # Solution
 artifacts/
 .cache/
+.bazel/
 bazel-*
 
 

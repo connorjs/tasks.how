@@ -1,0 +1,2 @@
+# Bazel 9 still expects a workspace-root marker for some tools even when the
+# repository is otherwise fully Bzlmod-native.

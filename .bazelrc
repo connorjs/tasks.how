@@ -3,6 +3,9 @@ common --color=yes
 common --curses=yes
 common --enable_bzlmod
 
+build --incompatible_strict_action_env
+build --nolegacy_external_runfiles
+build --output_groups=+_validation
 build --show_result=20
 build --keep_going
 

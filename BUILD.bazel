@@ -1,22 +1,44 @@
 load("@aspect_rules_lint//format:defs.bzl", "format_multirun")
 load("@gazelle//:def.bzl", "gazelle")
-load("@npm//:defs.bzl", "npm_link_all_packages")
+load("@rules_typescript//npm:defs.bzl", "node_modules")
+load("@rules_typescript//ts:defs.bzl", "ts_refresh_tsconfig")
 
 package(default_visibility = ["//visibility:public"])
 
 exports_files([
     "eslint.config.mjs",
-    "tsconfig.base.json",
+    "prettier.config.mjs",
 ])
 
-# A single root node_modules tree keeps JavaScript tooling predictable across
-# UI packages, lint rules, and one-off build actions.
-npm_link_all_packages(name = "node_modules")
+# gazelle:ts_package_boundary every-dir
+# gazelle:exclude .config
+# gazelle:exclude common/hosting.api
+# gazelle:exclude domains/example.api
+# gazelle:exclude global.json
 
 gazelle(
     name = "gazelle",
     args = ["-go_naming_convention=go_default_library"],
+    gazelle = "@rules_typescript//gazelle:gazelle_ts",
 )
+
+# Root-level npm tooling exists for repo-wide lint and format actions only.
+# Product code stays on package-scoped deps so UI bundles and tests pull in only
+# the packages they actually need at runtime.
+node_modules(
+    name = "node_modules",
+    deps = [
+        "@npm//:eslint",
+        "@npm//:eslint-plugin-react-hooks",
+        "@npm//:eslint_js",
+        "@npm//:prettier",
+        "@npm//:typescript",
+        "@npm//:typescript-eslint_eslint-plugin",
+        "@npm//:typescript-eslint_parser",
+    ],
+)
+
+ts_refresh_tsconfig(name = "refresh_tsconfig")
 
 filegroup(
     name = "starlark_files",
@@ -33,6 +55,7 @@ filegroup(
     ) + [
         "MODULE.bazel",
         "REPO.bazel",
+        "WORKSPACE.bazel",
     ],
 )
 
@@ -43,7 +66,7 @@ alias(
 
 alias(
     name = "typecheck",
-    actual = "//experiences/board/ui:ui_typecheck",
+    actual = "//experiences/board/ui/src:main",
 )
 
 format_multirun(
@@ -59,7 +82,8 @@ format_multirun(
 test_suite(
     name = "unit",
     tests = [
-        "//domains/tasks.api/hello:hello_test",
-        "//tools/lint",
+        "//domains/tasks.api/hello:go_default_test",
+        "//experiences/board/ui/src:app_test",
+        "//tools/lint:lint",
     ],
 )

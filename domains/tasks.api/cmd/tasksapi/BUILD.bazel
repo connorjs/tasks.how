@@ -1,12 +1,19 @@
-load("@rules_go//go:def.bzl", "go_binary")
+load("@rules_go//go:def.bzl", "go_binary", "go_library")
 
 go_binary(
     name = "tasksapi",
-    srcs = ["main.go"],
+    embed = [":go_default_library"],
     importpath = "github.com/connorjs/tasks.how/domains/tasks.api/cmd/tasksapi",
     visibility = ["//visibility:public"],
+)
+
+go_library(
+    name = "go_default_library",
+    srcs = ["main.go"],
+    importpath = "github.com/connorjs/tasks.how/domains/tasks.api/cmd/tasksapi",
+    visibility = ["//visibility:private"],
     deps = [
-        "//domains/tasks.api/hello",
-        "@com_github_go_chi_chi_v5//:chi",
+        "//domains/tasks.api/hello:go_default_library",
+        "@com_github_go_chi_chi_v5//:go_default_library",
     ],
 )

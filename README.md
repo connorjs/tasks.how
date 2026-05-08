@@ -18,7 +18,7 @@ That choice exists for a few reasons:
 ### Current language posture
 
 - `Go` is wired into Bazel today and used by the new Ducks-owned `domains/tasks.api` service.
-- `React + TypeScript` is wired into Bazel today with `rules_js`, `rules_ts`, esbuild-based browser bundling, ESLint, and Prettier.
+- `React + TypeScript` is wired into Bazel today with [`mikn/rules_typescript`](https://mikn.github.io/rules_typescript/), Vite bundling, ESLint, and Prettier.
 - `C# / .NET` remains in the repository, but Bazel integration for it is intentionally deferred for now.
 
 ### Quick start
@@ -28,7 +28,8 @@ That choice exists for a few reasons:
 3. Run `bazel test //...`.
 4. Run `bazel run //:format` to apply repo formatting.
 5. Run `bazel run //:format.check` to verify formatting without editing files.
-6. Run `bazel run //:gazelle` after changing Go package layout.
+6. Run `bazel run //:gazelle` after changing Go or TypeScript package layout.
+7. Run `bazel run //:refresh_tsconfig` when you want IDE-friendly TypeScript project metadata generated from the Bazel graph.
 
 ## Directory structure
 
@@ -202,16 +203,16 @@ Responsible for relevance, facets, and query performance.
 - `domains/tasks.api`
   A Ducks-owned Go API that exposes `GET /v1/hello?name=...` via `chi`.
 - `experiences/board/ui`
-  A Goose Squadron React + TypeScript board shell that is type-checked by `rules_ts` and bundled by esbuild under Bazel.
+  A Goose Squadron React + TypeScript board shell that compiles under `rules_typescript`, bundles with Vite, and carries a Vitest-powered UI test.
 - `tools/format` and `tools/lint`
   Cerberus-owned repo tooling entry points for Prettier, Buildifier, and ESLint.
 
 ## Why the Bazel setup looks like this
 
-- `MODULE.bazel` is fully Bzlmod-native because Bazel 9 removed `WORKSPACE`.
+- `MODULE.bazel` is fully Bzlmod-native, while `WORKSPACE.bazel` remains as the lightweight workspace marker Bazel 9 tooling still expects.
 - `rules_go` and Gazelle handle Go compilation and dependency discovery from `go.mod`.
-- `rules_js` owns Node and npm graph integration so JavaScript tools run under Bazel instead of beside it.
-- `rules_ts` is used for TypeScript type-checking so the compiler contract is explicit in the build graph.
+- `rules_typescript` is the JavaScript and TypeScript contract: Oxc compiles, tsgo type-checks, Vite bundles, and npm packages resolve from `pnpm-lock.yaml`.
+- The repository intentionally uses lockfile-only npm management. There is no source-controlled `node_modules/`; Bazel materializes only the runtime trees that specific tools need.
 - `rules_lint` provides the shared formatter surface, including multitool-backed formatting for Starlark and Go.
 - `REPO.bazel` and `.bazelignore` make the workspace Bazel-9-friendly without leaning on legacy `WORKSPACE` conventions.
 - `.bazelversion` keeps Bazelisk and direct Bazel users aligned on one repo-tested Bazel 9 release.
