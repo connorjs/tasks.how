@@ -8,6 +8,9 @@ import (
 	"github.com/go-chi/chi/v5"
 )
 
+// TODO: AI: Likewise to the handler.go split, break this into two parts: (1) the test logic for hello, (2) the test logic for routing. Move (2) to tasksapi package, in its own file.
+// TODO: AI: For the test logic for hello -- (1) from above -- use "data" or "parameterized" tests, assuming go has them.
+
 func TestRouteUsesProvidedName(t *testing.T) {
 	t.Parallel()
 

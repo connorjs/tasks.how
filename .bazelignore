@@ -1,7 +1,7 @@
-artifacts
-node_modules
-.cache
 .bazel
+.cache
+artifacts
 bazel-bin
 bazel-out
 bazel-testlogs
+node_modules

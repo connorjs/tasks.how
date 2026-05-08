@@ -1,5 +1,6 @@
 load("@rules_go//go:def.bzl", "go_library", "go_test")
 
+# TODO: AI: Why are these named `go_default_library` and `go_default_test`? Why not `lib` and `test` or `<package_name>` and `<package_name>_test` or some other combination? If no reason, think about the simplest naming pattern for scale and make changes.
 go_library(
     name = "go_default_library",
     srcs = ["handler.go"],

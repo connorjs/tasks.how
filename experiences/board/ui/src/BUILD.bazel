@@ -3,6 +3,7 @@
 load("@rules_typescript//npm:defs.bzl", "node_modules")
 load("@rules_typescript//ts:defs.bzl", "css_library", "ts_compile", "ts_test")
 
+# TODO: AI: Is the `src` nesting standard in mikn/rules_typescript example? Is it necessary? If not, remove the extra nesting.
 package(default_visibility = ["//visibility:public"])
 
 filegroup(

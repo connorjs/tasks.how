@@ -1,12 +1,20 @@
-common --announce_rc
+# Force colors
 common --color=yes
+# Enable interactive terminal UI (status line/progress updates)
 common --curses=yes
+# Turns on `bzlmod`
 common --enable_bzlmod
 
+# Run build actions with stricter environment (no host env vars)
 build --incompatible_strict_action_env
+# Disabled legacy external runfiles layout/behavior
 build --nolegacy_external_runfiles
+# Run validation actions as part of build
 build --output_groups=+_validation
+# Print results for up to N targets
 build --show_result=20
+# Do not stop at first error
 build --keep_going
 
+# Print failing tests
 test --test_output=errors

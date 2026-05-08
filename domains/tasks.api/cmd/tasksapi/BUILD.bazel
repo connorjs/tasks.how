@@ -1,8 +1,10 @@
+# TODO: AI: Why is `cmd` in the directory path? That seems unneeded.
 load("@rules_go//go:def.bzl", "go_binary", "go_library")
 
 go_binary(
     name = "tasksapi",
     embed = [":go_default_library"],
+    # TODO: AI: Is this import path the standard for INTERNAL imports? If not, make changes (throughout).
     importpath = "github.com/connorjs/tasks.how/domains/tasks.api/cmd/tasksapi",
     visibility = ["//visibility:public"],
 )

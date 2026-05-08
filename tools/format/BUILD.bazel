@@ -2,6 +2,7 @@ load("@rules_shell//shell:sh_binary.bzl", "sh_binary")
 
 package(default_visibility = ["//visibility:public"])
 
+# TODO: AI: Why do we make shell wrappers for everything? This seems wasteful.
 sh_binary(
     name = "prettier",
     srcs = ["prettier.sh"],

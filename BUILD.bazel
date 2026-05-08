@@ -5,11 +5,12 @@ load("@rules_typescript//ts:defs.bzl", "ts_add_package", "ts_pnpm", "ts_refresh_
 
 package(default_visibility = ["//visibility:public"])
 
+# Root config files that any package can use
 exports_files([
     "eslint.config.mjs",
-    "prettier.config.mjs",
 ])
 
+# Configure Gazelle
 # gazelle:ts_package_boundary every-dir
 # gazelle:exclude .config
 # gazelle:exclude common/hosting.api
@@ -22,6 +23,8 @@ gazelle(
     gazelle = "@rules_typescript//gazelle:gazelle_ts",
 )
 
+# TODO: AI: Review this node_modules given mikn/rules_typescript
+# TODO: AI: Use oxlint, not eslint
 # Root-level npm tooling exists for repo-wide lint and format actions only.
 # Product code stays on package-scoped deps so UI bundles and tests pull in only
 # the packages they actually need at runtime.
@@ -64,11 +67,13 @@ alias(
     actual = "//tools/lint:lint",
 )
 
+# TODO: AI: Review this alias. As the repo grows, I'm not sure this is what we want. Type checking should just happen with build, so we do not need an alias at all.
 alias(
     name = "typecheck",
     actual = "//experiences/board/ui/src:main",
 )
 
+# TODO: AI: Use oxfmt, not prettier, for JS/TS (but keep prettier for others)
 format_multirun(
     name = "format",
     css = "//tools/format:prettier",
@@ -79,6 +84,7 @@ format_multirun(
     starlark = "@buildifier_prebuilt//:buildifier",
 )
 
+# TODO: AI: I do not think this manual unit test target scales with repo growth. Use tags instead.
 test_suite(
     name = "unit",
     tests = [

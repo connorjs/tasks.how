@@ -12,6 +12,8 @@ type response struct {
 	Message string `json:"message"`
 }
 
+// TODO: AI: For toy-example reasons, break this into two parts: (1) the hello logic, (2) the route wiring/handler piece. Move the handler piece to tasksapi package, in its own file. Also, if there are "better" ways to get the query pattern (maybe not in Go), do that.
+
 // Route wires the slice into the shared router so the handler stays focused on
 // request parsing and response shape.
 func Route(router chi.Router) {

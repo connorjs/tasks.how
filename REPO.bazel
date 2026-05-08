@@ -1,5 +1,5 @@
 ignore_directories([
-    "**/node_modules",
-    "artifacts",
     ".cache",
+    "artifacts",
+    "**/node_modules",
 ])

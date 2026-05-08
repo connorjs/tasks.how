@@ -5,6 +5,7 @@ load("@rules_typescript//vite:bundler.bzl", "vite_bundler")
 
 package(default_visibility = ["//visibility:public"])
 
+# TODO: AI: Confirm this is generated from Gazelle? Or is this specific one not (the ignore at the top)? Why/Why not?
 node_modules(
     name = "node_modules",
     deps = [
@@ -14,6 +15,7 @@ node_modules(
     ],
 )
 
+# TODO: AI: Document how to run the SPA in the README.
 vite_bundler(
     name = "vite",
     node_modules = ":node_modules",

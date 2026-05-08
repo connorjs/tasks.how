@@ -2,6 +2,7 @@ load("@rules_shell//shell:sh_test.bzl", "sh_test")
 
 package(default_visibility = ["//visibility:public"])
 
+# TODO: AI: Why do we need this? We have format and format.check with multirun
 sh_test(
     name = "buildifier_test",
     srcs = ["buildifier_test.sh"],
