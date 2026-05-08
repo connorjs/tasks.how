@@ -1,7 +1,7 @@
 load("@aspect_rules_lint//format:defs.bzl", "format_multirun")
 load("@gazelle//:def.bzl", "gazelle")
 load("@rules_typescript//npm:defs.bzl", "node_modules")
-load("@rules_typescript//ts:defs.bzl", "ts_refresh_tsconfig")
+load("@rules_typescript//ts:defs.bzl", "ts_add_package", "ts_pnpm", "ts_refresh_tsconfig")
 
 package(default_visibility = ["//visibility:public"])
 
@@ -84,6 +84,10 @@ test_suite(
     tests = [
         "//domains/tasks.api/hello:go_default_test",
         "//experiences/board/ui/src:app_test",
-        "//tools/lint:lint",
+        "//tools/lint",
     ],
 )
+
+ts_pnpm(name = "pnpm")
+
+ts_add_package(name = "add_package")
