@@ -18,7 +18,7 @@ That choice exists for a few reasons:
 ### Current language posture
 
 - `Go` is wired into Bazel today and used by the new Ducks-owned `domains/tasks.api` service.
-- `React + TypeScript` is wired into Bazel today with [`mikn/rules_typescript`](https://mikn.github.io/rules_typescript/), Vite bundling, ESLint, and Prettier.
+- `React + TypeScript` is wired into Bazel today with [`mikn/rules_typescript`](https://mikn.github.io/rules_typescript/), Vite bundling, `oxlint`, `oxfmt`, and Prettier for the non-code surfaces.
 - `C# / .NET` remains in the repository, but Bazel integration for it is intentionally deferred for now.
 
 ### Quick start
@@ -30,6 +30,8 @@ That choice exists for a few reasons:
 5. Run `bazel run //:format.check` to verify formatting without editing files.
 6. Run `bazel run //:gazelle` after changing Go or TypeScript package layout.
 7. Run `bazel run //:refresh_tsconfig` when you want IDE-friendly TypeScript project metadata generated from the Bazel graph.
+8. Run `bazel run //domains/tasks.api:tasksapi` to start the example API on port `8080`.
+9. Run `bazel build //experiences/board/ui:board_bundle` to produce the board SPA bundle under `bazel-bin/experiences/board/ui/board_bundle_bundle/`.
 
 ## Directory structure
 
@@ -205,7 +207,7 @@ Responsible for relevance, facets, and query performance.
 - `experiences/board/ui`
   A Goose Squadron React + TypeScript board shell that compiles under `rules_typescript`, bundles with Vite, and carries a Vitest-powered UI test.
 - `tools/format` and `tools/lint`
-  Cerberus-owned repo tooling entry points for Prettier, Buildifier, and ESLint.
+  Cerberus-owned repo tooling entry points for `oxfmt`, Prettier, Buildifier, and `oxlint`.
 
 ## Why the Bazel setup looks like this
 

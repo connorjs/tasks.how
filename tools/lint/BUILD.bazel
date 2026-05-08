@@ -3,6 +3,7 @@ load("@rules_shell//shell:sh_test.bzl", "sh_test")
 package(default_visibility = ["//visibility:public"])
 
 # TODO: AI: Why do we need this? We have format and format.check with multirun
+#  From AI: `format` and `format.check` are runnable commands, not test targets. Keeping a dedicated Buildifier test means `bazel test //...` and test-tag filters still verify Bazel/Starlark hygiene in CI.
 sh_test(
     name = "buildifier_test",
     srcs = ["buildifier_test.sh"],
@@ -13,27 +14,28 @@ sh_test(
         "//:starlark_files",
         "@buildifier_prebuilt//:buildifier",
     ],
+    tags = ["lint"],
 )
 
 sh_test(
-    name = "eslint_test",
-    srcs = ["eslint_test.sh"],
+    name = "oxlint_test",
+    srcs = ["oxlint_test.sh"],
     args = [
-        "$(rootpath @npm//:eslint_bin)",
-        "$(rootpath //:eslint.config.mjs)",
+        "$(rootpath @npm//:oxlint_bin)",
+        "$(rootpath //:oxlint.json)",
     ],
     data = [
-        "//:eslint.config.mjs",
-        "//:node_modules",
-        "//experiences/board/ui/src:lint_srcs",
-        "@npm//:eslint_bin",
+        "//:oxlint.json",
+        "//experiences/board/ui:lint_srcs",
+        "@npm//:oxlint_bin",
     ],
+    tags = ["lint"],
 )
 
 test_suite(
     name = "lint",
     tests = [
         ":buildifier_test",
-        ":eslint_test",
+        ":oxlint_test",
     ],
 )

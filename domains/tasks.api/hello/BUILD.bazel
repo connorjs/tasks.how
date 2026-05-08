@@ -1,17 +1,15 @@
 load("@rules_go//go:def.bzl", "go_library", "go_test")
 
-# TODO: AI: Why are these named `go_default_library` and `go_default_test`? Why not `lib` and `test` or `<package_name>` and `<package_name>_test` or some other combination? If no reason, think about the simplest naming pattern for scale and make changes.
 go_library(
-    name = "go_default_library",
-    srcs = ["handler.go"],
+    name = "hello",
+    srcs = ["message.go"],
     importpath = "github.com/connorjs/tasks.how/domains/tasks.api/hello",
     visibility = ["//visibility:public"],
-    deps = ["@com_github_go_chi_chi_v5//:go_default_library"],
 )
 
 go_test(
-    name = "go_default_test",
-    srcs = ["handler_test.go"],
-    embed = [":go_default_library"],
-    deps = ["@com_github_go_chi_chi_v5//:go_default_library"],
+    name = "hello_test",
+    srcs = ["message_test.go"],
+    embed = [":hello"],
+    tags = ["unit"],
 )

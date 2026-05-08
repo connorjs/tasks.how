@@ -1,7 +1,6 @@
 {
 	"name": "tasks-how",
 	"private": true,
-	"packageManager": "pnpm@10.32.1",
 	"dependencies": {
 		"@testing-library/react": "^16.3.2",
 		"@types/react": "^19.2.0",
@@ -13,13 +12,11 @@
 		"vitest": "^3.2.4"
 	},
 	"devDependencies": {
-		"@eslint/js": "^9.35.0",
 		"@types/node": "24.0.0",
-		"@typescript-eslint/eslint-plugin": "^8.58.2",
-		"@typescript-eslint/parser": "^8.58.2",
-		"eslint": "^9.35.0",
-		"eslint-plugin-react-hooks": "^7.1.1",
+		"oxfmt": "^0.48.0",
+		"oxlint": "^1.63.0",
 		"prettier": "^3.6.2",
 		"typescript": "5.9.3"
-	}
+	},
+	"packageManager": "pnpm@10.32.1"
 }

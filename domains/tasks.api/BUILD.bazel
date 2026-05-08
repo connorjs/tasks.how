@@ -1,3 +1,29 @@
+load("@rules_go//go:def.bzl", "go_binary", "go_library", "go_test")
+
 package(default_visibility = ["//visibility:public"])
 
-exports_files(["go.mod"])
+go_binary(
+    name = "tasksapi",
+    embed = [":tasksapi_lib"],
+)
+
+go_library(
+    name = "tasksapi_lib",
+    srcs = [
+        "main.go",
+        "routes.go",
+    ],
+    importpath = "github.com/connorjs/tasks.how/domains/tasks.api",
+    visibility = ["//visibility:private"],
+    deps = [
+        "//domains/tasks.api/hello",
+        "@com_github_go_chi_chi_v5//:go_default_library",
+    ],
+)
+
+go_test(
+    name = "tasksapi_test",
+    srcs = ["routes_test.go"],
+    embed = [":tasksapi_lib"],
+    tags = ["unit"],
+)

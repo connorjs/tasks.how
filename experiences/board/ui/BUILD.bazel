@@ -1,37 +1,103 @@
 # gazelle:ignore
 load("@rules_typescript//npm:defs.bzl", "node_modules")
-load("@rules_typescript//ts:defs.bzl", "ts_bundle")
+load("@rules_typescript//ts:defs.bzl", "css_library", "ts_bundle", "ts_compile", "ts_test")
 load("@rules_typescript//vite:bundler.bzl", "vite_bundler")
 
 package(default_visibility = ["//visibility:public"])
 
 # TODO: AI: Confirm this is generated from Gazelle? Or is this specific one not (the ignore at the top)? Why/Why not?
+#  From AI: This one is intentionally hand-written. Gazelle is great at compile-oriented package generation, but `vite_bundler`, `ts_bundle`, and the staging filegroups here are product-specific orchestration that we do not want Gazelle rewriting.
 node_modules(
     name = "node_modules",
     deps = [
+        "@npm//:happy-dom",
         "@npm//:react",
         "@npm//:react-dom",
+        "@npm//:testing-library_react",
         "@npm//:vite",
+        "@npm//:vitest",
     ],
 )
 
-# TODO: AI: Document how to run the SPA in the README.
 vite_bundler(
     name = "vite",
     node_modules = ":node_modules",
     vite = "@npm//:vite",
 )
 
+filegroup(
+    name = "lint_srcs",
+    srcs = [
+        "App.test.tsx",
+        "App.tsx",
+        "main.tsx",
+    ],
+)
+
+css_library(
+    name = "styles",
+    srcs = ["styles.css"],
+    visibility = ["//visibility:public"],
+)
+
+ts_compile(
+    name = "app",
+    srcs = ["App.tsx"],
+    visibility = ["//visibility:public"],
+    deps = ["@npm//:react"],
+)
+
+ts_compile(
+    name = "main",
+    srcs = ["main.tsx"],
+    visibility = ["//visibility:public"],
+    deps = [
+        ":app",
+        ":styles",
+        "@npm//:react",
+        "@npm//:react-dom",
+        "@npm//:types_react-dom",
+    ],
+)
+
+ts_test(
+    name = "app_test",
+    srcs = ["App.test.tsx"],
+    config = "vitest.config.mjs",
+    environment = "happy-dom",
+    node_modules = ":node_modules",
+    tags = ["unit"],
+    deps = [
+        ":app",
+        "@npm//:happy-dom",
+        "@npm//:react",
+        "@npm//:react-dom",
+        "@npm//:testing-library_react",
+        "@npm//:vitest",
+    ],
+)
+
+filegroup(
+    name = "sources",
+    srcs = [
+        "App.tsx",
+        "main.tsx",
+        "styles.css",
+        "vitest.config.mjs",
+    ],
+    visibility = ["//visibility:public"],
+)
+
 ts_bundle(
     name = "board_bundle",
     bundler = ":vite",
-    entry_point = "//experiences/board/ui/src:main",
+    entry_point = ":main",
     html = "index.html",
     minify = False,
     mode = "app",
     sourcemap = True,
     staging_srcs = [
         "index.html",
-        "//experiences/board/ui/src:sources",
+        ":sources",
     ],
 )

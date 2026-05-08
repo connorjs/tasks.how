@@ -1,17 +1,17 @@
 load("@aspect_rules_lint//format:defs.bzl", "format_multirun")
 load("@gazelle//:def.bzl", "gazelle")
-load("@rules_typescript//npm:defs.bzl", "node_modules")
-load("@rules_typescript//ts:defs.bzl", "ts_add_package", "ts_pnpm", "ts_refresh_tsconfig")
+load("@rules_typescript//ts:defs.bzl", "ts_refresh_tsconfig")
 
 package(default_visibility = ["//visibility:public"])
 
 # Root config files that any package can use
 exports_files([
-    "eslint.config.mjs",
+    "oxlint.json",
 ])
 
 # Configure Gazelle
 # gazelle:ts_package_boundary every-dir
+# gazelle:go_naming_convention import
 # gazelle:exclude .config
 # gazelle:exclude common/hosting.api
 # gazelle:exclude domains/example.api
@@ -19,26 +19,8 @@ exports_files([
 
 gazelle(
     name = "gazelle",
-    args = ["-go_naming_convention=go_default_library"],
+    args = ["-go_naming_convention=import"],
     gazelle = "@rules_typescript//gazelle:gazelle_ts",
-)
-
-# TODO: AI: Review this node_modules given mikn/rules_typescript
-# TODO: AI: Use oxlint, not eslint
-# Root-level npm tooling exists for repo-wide lint and format actions only.
-# Product code stays on package-scoped deps so UI bundles and tests pull in only
-# the packages they actually need at runtime.
-node_modules(
-    name = "node_modules",
-    deps = [
-        "@npm//:eslint",
-        "@npm//:eslint-plugin-react-hooks",
-        "@npm//:eslint_js",
-        "@npm//:prettier",
-        "@npm//:typescript",
-        "@npm//:typescript-eslint_eslint-plugin",
-        "@npm//:typescript-eslint_parser",
-    ],
 )
 
 ts_refresh_tsconfig(name = "refresh_tsconfig")
@@ -67,33 +49,12 @@ alias(
     actual = "//tools/lint:lint",
 )
 
-# TODO: AI: Review this alias. As the repo grows, I'm not sure this is what we want. Type checking should just happen with build, so we do not need an alias at all.
-alias(
-    name = "typecheck",
-    actual = "//experiences/board/ui/src:main",
-)
-
-# TODO: AI: Use oxfmt, not prettier, for JS/TS (but keep prettier for others)
 format_multirun(
     name = "format",
     css = "//tools/format:prettier",
     go = "@aspect_rules_lint//format:gofumpt",
     html = "//tools/format:prettier",
-    javascript = "//tools/format:prettier",
+    javascript = "//tools/format:oxfmt",
     markdown = "//tools/format:prettier",
     starlark = "@buildifier_prebuilt//:buildifier",
 )
-
-# TODO: AI: I do not think this manual unit test target scales with repo growth. Use tags instead.
-test_suite(
-    name = "unit",
-    tests = [
-        "//domains/tasks.api/hello:go_default_test",
-        "//experiences/board/ui/src:app_test",
-        "//tools/lint",
-    ],
-)
-
-ts_pnpm(name = "pnpm")
-
-ts_add_package(name = "add_package")

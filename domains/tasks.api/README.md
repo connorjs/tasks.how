@@ -8,9 +8,9 @@ Its first job is to prove that the new Bazel-based Go toolchain is easy to under
 
 ## Why this domain exists
 
-- `cmd/tasksapi` hosts the executable entry point and keeps process concerns close to startup code.
+- `tasksapi` now lives at the package root so the example stays easy to discover in a small monorepo.
 - `hello/` contains the first vertical slice so feature logic can grow by capability instead of by technical layer.
-- The `GET /v1/hello` route demonstrates the contract shape we want for future domain APIs: tiny handler, explicit query parsing, and a test that locks behavior down.
+- The `GET /v1/hello` route demonstrates the contract shape we want for future domain APIs: pure domain logic in one package, HTTP wiring in another, and tests that lock both layers down independently.
 
 ## Current route
 

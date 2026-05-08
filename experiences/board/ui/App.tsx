@@ -1,4 +1,4 @@
-import type { CSSProperties, ReactElement } from 'react';
+import type { CSSProperties, ReactElement } from "react";
 
 type BoardLane = {
 	name: string;
@@ -11,46 +11,46 @@ type BoardLane = {
 
 const lanes: BoardLane[] = [
 	{
-		name: 'Signal',
-		accent: 'var(--lane-signal)',
+		name: "Signal",
+		accent: "var(--lane-signal)",
 		cards: [
 			{
-				title: 'Task health snapshot',
-				detail: 'Fast board views are how Goose Squadron keeps planning honest.',
+				title: "Task health snapshot",
+				detail: "Fast board views are how Goose Squadron keeps planning honest.",
 			},
 			{
-				title: 'Drag-and-drop next',
-				detail: 'Interaction depth can grow without changing the build contract.',
+				title: "Drag-and-drop next",
+				detail: "Interaction depth can grow without changing the build contract.",
 			},
 		],
 	},
 	{
-		name: 'Flow',
-		accent: 'var(--lane-flow)',
+		name: "Flow",
+		accent: "var(--lane-flow)",
 		cards: [
 			{
-				title: 'rules_typescript',
+				title: "rules_typescript",
 				detail:
-					'Oxc and tsgo keep the React slice fast without falling back to ambient node_modules.',
+					"Oxc and tsgo keep the React slice fast without falling back to ambient node_modules.",
 			},
 			{
-				title: 'Hermetic Vite bundle',
+				title: "Hermetic Vite bundle",
 				detail:
-					'The browser artifact now comes from the mikn ruleset instead of a hand-rolled esbuild bridge.',
+					"The browser artifact now comes from the mikn ruleset instead of a hand-rolled esbuild bridge.",
 			},
 		],
 	},
 	{
-		name: 'Launch',
-		accent: 'var(--lane-launch)',
+		name: "Launch",
+		accent: "var(--lane-launch)",
 		cards: [
 			{
-				title: 'Bazel 9 first',
-				detail: 'Everything new in the repo grows inside the module graph from day one.',
+				title: "Bazel 9 first",
+				detail: "Everything new in the repo grows inside the module graph from day one.",
 			},
 			{
-				title: 'Domain API ready',
-				detail: 'The Ducks-owned Go API already exposes /v1/hello for integration smoke tests.',
+				title: "Domain API ready",
+				detail: "The Ducks-owned Go API already exposes /v1/hello for integration smoke tests.",
 			},
 		],
 	},
@@ -72,7 +72,7 @@ export function App(): ReactElement {
 			<section className="board" aria-label="Example task board">
 				{lanes.map((lane) => {
 					const laneStyle = {
-						['--lane-accent' as '--lane-accent']: lane.accent,
+						["--lane-accent" as "--lane-accent"]: lane.accent,
 					} as CSSProperties;
 
 					return (
