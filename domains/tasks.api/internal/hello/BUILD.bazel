@@ -3,8 +3,8 @@ load("@rules_go//go:def.bzl", "go_library", "go_test")
 go_library(
     name = "hello",
     srcs = ["message.go"],
-    importpath = "github.com/connorjs/tasks.how/domains/tasks.api/hello",
-    visibility = ["//visibility:public"],
+    importpath = "github.com/connorjs/tasks.how/domains/tasks.api/internal/hello",
+    visibility = ["//domains/tasks.api:__pkg__"],
 )
 
 go_test(

@@ -16,8 +16,13 @@ func TestMessage(t *testing.T) {
 			expected: "hello Goose",
 		},
 		{
-			name:     "trims whitespace",
+			name:     "trims surrounding whitespace",
 			input:    "  Goose  ",
+			expected: "hello Goose",
+		},
+		{
+			name:     "trims tabs and newlines",
+			input:    "\n\tGoose\t\n",
 			expected: "hello Goose",
 		},
 		{
@@ -33,7 +38,6 @@ func TestMessage(t *testing.T) {
 	}
 
 	for _, testCase := range testCases {
-		testCase := testCase
 		t.Run(testCase.name, func(t *testing.T) {
 			t.Parallel()
 

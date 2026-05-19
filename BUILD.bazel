@@ -4,12 +4,10 @@ load("@rules_typescript//ts:defs.bzl", "ts_refresh_tsconfig")
 
 package(default_visibility = ["//visibility:public"])
 
-# Root config files that any package can use
 exports_files([
-    "oxlint.json",
+    "oxlint.config.js",
 ])
 
-# Configure Gazelle
 # gazelle:ts_package_boundary every-dir
 # gazelle:go_naming_convention import
 # gazelle:exclude .config
@@ -26,7 +24,7 @@ gazelle(
 ts_refresh_tsconfig(name = "refresh_tsconfig")
 
 filegroup(
-    name = "starlark_files",
+    name = "buildifier_srcs",
     srcs = glob(
         [
             "**/*.bzl",
@@ -34,8 +32,10 @@ filegroup(
         ],
         allow_empty = True,
         exclude = [
+            ".bazel/**",
             ".cache/**",
             "artifacts/**",
+            "bazel-*/**",
         ],
     ) + [
         "MODULE.bazel",
@@ -44,9 +44,12 @@ filegroup(
     ],
 )
 
-alias(
+test_suite(
     name = "lint",
-    actual = "//tools/lint:lint",
+    tests = [
+        "//tools/lint:buildifier_test",
+        "//tools/lint:oxlint_test",
+    ],
 )
 
 format_multirun(
@@ -55,6 +58,14 @@ format_multirun(
     go = "@aspect_rules_lint//format:gofumpt",
     html = "//tools/format:prettier",
     javascript = "//tools/format:oxfmt",
+    javascript_check_args = [
+        "--check",
+        "--no-error-on-unmatched-pattern",
+    ],
+    javascript_fix_args = [
+        "--write",
+        "--no-error-on-unmatched-pattern",
+    ],
     markdown = "//tools/format:prettier",
     starlark = "@buildifier_prebuilt//:buildifier",
 )

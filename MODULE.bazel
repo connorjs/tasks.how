@@ -2,12 +2,16 @@ module(
     name = "tasks_how",
 )
 
-# Core language and ecosystem rules. Bazel 9 removed WORKSPACE as the primary
-# dependency entry point, so the repo stays Bzlmod-native by default.
+# Bazel 9 uses Bzlmod as the dependency entry point. WORKSPACE.bazel stays as
+# a lightweight compatibility marker for tools that still look for one.
 bazel_dep(name = "aspect_rules_lint", version = "2.5.0")
+bazel_dep(name = "aspect_bazel_lib", version = "2.22.0")
+bazel_dep(name = "aspect_rules_js", version = "1.40.0")
 bazel_dep(name = "buildifier_prebuilt", version = "8.5.1")
 bazel_dep(name = "gazelle", version = "0.47.0")
+bazel_dep(name = "platforms", version = "1.0.0")
 bazel_dep(name = "rules_go", version = "0.60.0")
+bazel_dep(name = "rules_multitool", version = "0.11.0")
 bazel_dep(name = "rules_shell", version = "0.8.0")
 bazel_dep(name = "rules_typescript", version = "0.1.0")
 git_override(
@@ -17,6 +21,10 @@ git_override(
 )
 
 register_toolchains("@rules_typescript//ts/toolchain:all")
+
+multitool = use_extension("@rules_multitool//multitool:extension.bzl", "multitool")
+multitool.hub(lockfile = "//:multitool.lock.json")
+use_repo(multitool, "multitool")
 
 npm = use_extension("@rules_typescript//npm:extensions.bzl", "npm")
 npm.translate_lock(pnpm_lock = "//:pnpm-lock.yaml")

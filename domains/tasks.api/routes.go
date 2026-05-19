@@ -4,7 +4,7 @@ import (
 	"encoding/json"
 	"net/http"
 
-	"github.com/connorjs/tasks.how/domains/tasks.api/hello"
+	"github.com/connorjs/tasks.how/domains/tasks.api/internal/hello"
 	"github.com/go-chi/chi/v5"
 )
 
@@ -14,9 +14,7 @@ type helloResponse struct {
 
 func newRouter() chi.Router {
 	router := chi.NewRouter()
-	router.Route("/v1", func(api chi.Router) {
-		api.Get("/hello", helloHandler)
-	})
+	router.Get("/v1/hello", helloHandler)
 	return router
 }
 

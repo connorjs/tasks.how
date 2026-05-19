@@ -1,28 +1,29 @@
-load("@rules_shell//shell:sh_binary.bzl", "sh_binary")
+load("@aspect_bazel_lib//lib:directory_path.bzl", "directory_path")
+load("@aspect_rules_js//js:defs.bzl", "js_binary")
 load("@rules_typescript//npm:defs.bzl", "node_modules")
 
 package(default_visibility = ["//visibility:public"])
 
 node_modules(
     name = "node_modules",
-    deps = ["@npm//:oxfmt"],
+    deps = [
+        "@npm//:prettier",
+    ],
 )
 
-# TODO: AI: Why do we make shell wrappers for everything? This seems wasteful.
-#  From AI: We only keep wrappers for npm-bin CLIs that change their working directory into Bazel runfiles. Without the wrapper, workspace-relative formatter invocations break under `format_multirun`.
-sh_binary(
+directory_path(
+    name = "prettier_entry",
+    directory = ":node_modules",
+    path = "prettier/bin/prettier.cjs",
+)
+
+js_binary(
     name = "prettier",
-    srcs = ["prettier.sh"],
-    data = [
-        "@npm//:prettier_bin",
-    ],
+    entry_point = ":prettier_entry",
+    env = {"BAZEL_BINDIR": "."},
 )
 
-sh_binary(
+alias(
     name = "oxfmt",
-    srcs = ["oxfmt.sh"],
-    data = [
-        ":node_modules",
-        "@npm//:oxfmt_bin",
-    ],
+    actual = "@multitool//tools/oxfmt",
 )

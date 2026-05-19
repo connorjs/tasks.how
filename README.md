@@ -7,19 +7,13 @@ rather than “a monorepo is the right decision for this.”_
 
 ## Build system
 
-The repository now treats Bazel 9 as the primary build system for all new work.
-
-That choice exists for a few reasons:
-
-- Cerberus needs one place to express shared toolchains, linting, formatting, and CI behavior.
-- The Ducks and Goose Squadron should be able to add Go and React code without inventing separate local build conventions.
-- Bazelisk gives contributors a lightweight launcher, while `.bazelversion` keeps the actual Bazel version pinned.
+Bazel 9 is the primary build system for new Go and TypeScript work. Bazelisk launches the repo-pinned Bazel version from `.bazelversion`, while Bzlmod keeps external toolchains and package managers declared in one place.
 
 ### Current language posture
 
 - `Go` is wired into Bazel today and used by the new Ducks-owned `domains/tasks.api` service.
 - `React + TypeScript` is wired into Bazel today with [`mikn/rules_typescript`](https://mikn.github.io/rules_typescript/), Vite bundling, `oxlint`, `oxfmt`, and Prettier for the non-code surfaces.
-- `C# / .NET` remains in the repository, but Bazel integration for it is intentionally deferred for now.
+- `C# / .NET` remains validated with the native .NET CLI while Bazel integration for those projects is deferred.
 
 ### Quick start
 
@@ -28,10 +22,11 @@ That choice exists for a few reasons:
 3. Run `bazel test //...`.
 4. Run `bazel run //:format` to apply repo formatting.
 5. Run `bazel run //:format.check` to verify formatting without editing files.
-6. Run `bazel run //:gazelle` after changing Go or TypeScript package layout.
-7. Run `bazel run //:refresh_tsconfig` when you want IDE-friendly TypeScript project metadata generated from the Bazel graph.
-8. Run `bazel run //domains/tasks.api:tasksapi` to start the example API on port `8080`.
-9. Run `bazel build //experiences/board/ui:board_bundle` to produce the board SPA bundle under `bazel-bin/experiences/board/ui/board_bundle_bundle/`.
+6. Run `bazel test //:lint` to run repo lint checks.
+7. Run `bazel run //:gazelle` after changing Go or TypeScript package layout.
+8. Run `bazel run //:refresh_tsconfig` when you want IDE-friendly TypeScript project metadata generated from the Bazel graph.
+9. Run `bazel run //domains/tasks.api:tasksapi` to start the example API on port `8080`.
+10. Run `bazel build //experiences/board/ui:board_bundle` to produce the board SPA bundle under `bazel-bin/experiences/board/ui/board_bundle_bundle/`.
 
 ## Directory structure
 
@@ -200,21 +195,9 @@ Responsible for relevance, facets, and query performance.
 - The Magpies, Lynx, Goose Squadron, and Bowser Works each own a distinct **UI + BFF** pairing,
   which enables independent deploys and type-safe contracts.
 
-## What the repo contains now
-
-- `domains/tasks.api`
-  A Ducks-owned Go API that exposes `GET /v1/hello?name=...` via `chi`.
-- `experiences/board/ui`
-  A Goose Squadron React + TypeScript board shell that compiles under `rules_typescript`, bundles with Vite, and carries a Vitest-powered UI test.
-- `tools/format` and `tools/lint`
-  Cerberus-owned repo tooling entry points for `oxfmt`, Prettier, Buildifier, and `oxlint`.
-
 ## Why the Bazel setup looks like this
 
-- `MODULE.bazel` is fully Bzlmod-native, while `WORKSPACE.bazel` remains as the lightweight workspace marker Bazel 9 tooling still expects.
-- `rules_go` and Gazelle handle Go compilation and dependency discovery from `go.mod`.
-- `rules_typescript` is the JavaScript and TypeScript contract: Oxc compiles, tsgo type-checks, Vite bundles, and npm packages resolve from `pnpm-lock.yaml`.
-- The repository intentionally uses lockfile-only npm management. There is no source-controlled `node_modules/`; Bazel materializes only the runtime trees that specific tools need.
-- `rules_lint` provides the shared formatter surface, including multitool-backed formatting for Starlark and Go.
-- `REPO.bazel` and `.bazelignore` make the workspace Bazel-9-friendly without leaning on legacy `WORKSPACE` conventions.
-- `.bazelversion` keeps Bazelisk and direct Bazel users aligned on one repo-tested Bazel 9 release.
+- `MODULE.bazel` owns the Bzlmod dependency graph; `WORKSPACE.bazel` remains only as a compatibility marker.
+- `rules_go` and Gazelle handle Go builds from `go.mod`.
+- `rules_typescript` handles TypeScript compilation, Vite bundling, and npm packages from `pnpm-lock.yaml`.
+- `format_multirun` provides one Bazel formatting target across Go, Starlark, TypeScript, CSS, HTML, and Markdown.

@@ -480,8 +480,8 @@
     },
     "@@rules_multitool+//multitool:extension.bzl%multitool": {
       "general": {
-        "bzlTransitiveDigest": "pXNFmAGqhY3GKxUmgv7pZBiDSK6T4ioktmem0jGVYFo=",
-        "usagesDigest": "ECQSWUVv2JRfJfCWkmbKt64n7RT16pbFJ8df4qZA9Y0=",
+        "bzlTransitiveDigest": "4avMykFfU7yKLcNGDrP0DjyoXjCsFZPCwsEYp3ik6dA=",
+        "usagesDigest": "DiTHptnB2lzDzwLp6tw7xZ7j3glFRjIRAvTXpEzi9Uo=",
         "recordedInputs": [
           "REPO_MAPPING:bazel_features+,bazel_features_globals bazel_features++version_extension+bazel_features_globals",
           "REPO_MAPPING:bazel_features+,bazel_features_version bazel_features++version_extension+bazel_features_version",
@@ -493,7 +493,8 @@
             "attributes": {
               "lockfiles": [
                 "@@aspect_rules_lint+//format:multitool.lock.json",
-                "@@aspect_rules_lint+//lint:multitool.lock.json"
+                "@@aspect_rules_lint+//lint:multitool.lock.json",
+                "@@//:multitool.lock.json"
               ],
               "os": "linux",
               "cpu": "arm64"
@@ -504,7 +505,8 @@
             "attributes": {
               "lockfiles": [
                 "@@aspect_rules_lint+//format:multitool.lock.json",
-                "@@aspect_rules_lint+//lint:multitool.lock.json"
+                "@@aspect_rules_lint+//lint:multitool.lock.json",
+                "@@//:multitool.lock.json"
               ],
               "os": "linux",
               "cpu": "x86_64"
@@ -515,7 +517,8 @@
             "attributes": {
               "lockfiles": [
                 "@@aspect_rules_lint+//format:multitool.lock.json",
-                "@@aspect_rules_lint+//lint:multitool.lock.json"
+                "@@aspect_rules_lint+//lint:multitool.lock.json",
+                "@@//:multitool.lock.json"
               ],
               "os": "macos",
               "cpu": "arm64"
@@ -526,7 +529,8 @@
             "attributes": {
               "lockfiles": [
                 "@@aspect_rules_lint+//format:multitool.lock.json",
-                "@@aspect_rules_lint+//lint:multitool.lock.json"
+                "@@aspect_rules_lint+//lint:multitool.lock.json",
+                "@@//:multitool.lock.json"
               ],
               "os": "macos",
               "cpu": "x86_64"
@@ -537,7 +541,8 @@
             "attributes": {
               "lockfiles": [
                 "@@aspect_rules_lint+//format:multitool.lock.json",
-                "@@aspect_rules_lint+//lint:multitool.lock.json"
+                "@@aspect_rules_lint+//lint:multitool.lock.json",
+                "@@//:multitool.lock.json"
               ],
               "os": "windows",
               "cpu": "arm64"
@@ -548,7 +553,8 @@
             "attributes": {
               "lockfiles": [
                 "@@aspect_rules_lint+//format:multitool.lock.json",
-                "@@aspect_rules_lint+//lint:multitool.lock.json"
+                "@@aspect_rules_lint+//lint:multitool.lock.json",
+                "@@//:multitool.lock.json"
               ],
               "os": "windows",
               "cpu": "x86_64"
@@ -559,7 +565,8 @@
             "attributes": {
               "lockfiles": [
                 "@@aspect_rules_lint+//format:multitool.lock.json",
-                "@@aspect_rules_lint+//lint:multitool.lock.json"
+                "@@aspect_rules_lint+//lint:multitool.lock.json",
+                "@@//:multitool.lock.json"
               ]
             }
           }
@@ -569,7 +576,7 @@
     "@@rules_nodejs+//nodejs:extensions.bzl%node": {
       "general": {
         "bzlTransitiveDigest": "4pUxCNc22K4I+6+4Nxu52Hur12tFRfa1JMsN5mdDv60=",
-        "usagesDigest": "LMqxHatGgWbPVzdJpsobL93wXmGv1BRbmQUE5tvAqn8=",
+        "usagesDigest": "zmWZXwYCsQqwjPGzQcBsqVgEnoCdu52zNeyJRL2XmtQ=",
         "recordedInputs": [],
         "generatedRepoSpecs": {
           "nodejs_linux_amd64": {
@@ -897,7 +904,7 @@
     },
     "@@rules_rust+//crate_universe:extensions.bzl%crate": {
       "general": {
-        "bzlTransitiveDigest": "SXNkfTKxshiuHf8R8vwgnUgZM3zBnRdJM/PTDhm38Mg=",
+        "bzlTransitiveDigest": "pPZkXGLiC3X92aE8y0f5QXCrW8BjYZhavxNcL0fkxk4=",
         "usagesDigest": "QA/BTru59flA32pru6hXdZbGAPSH9mOJOHiJm1z6PgU=",
         "recordedInputs": [
           "ENV:CARGO_BAZEL_DEBUG \\0",

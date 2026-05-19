@@ -1,0 +1,39 @@
+{
+  "$schema": "https://raw.githubusercontent.com/theoremlp/rules_multitool/main/lockfile.schema.json",
+  "oxfmt": {
+    "binaries": [
+      {
+        "kind": "archive",
+        "url": "https://github.com/oxc-project/oxc/releases/download/apps_v1.63.0/oxfmt-aarch64-apple-darwin.tar.gz",
+        "sha256": "023335e50cc8198c7aa0332a0d5cb51d5132f10f6abec372f7daca975655c3e5",
+        "os": "macos",
+        "cpu": "arm64",
+        "file": "oxfmt-aarch64-apple-darwin"
+      },
+      {
+        "kind": "archive",
+        "url": "https://github.com/oxc-project/oxc/releases/download/apps_v1.63.0/oxfmt-x86_64-apple-darwin.tar.gz",
+        "sha256": "355b7cb60074dd724faf3d35e16f9eda59d65af963f8ad18522ad5f404100328",
+        "os": "macos",
+        "cpu": "x86_64",
+        "file": "oxfmt-x86_64-apple-darwin"
+      },
+      {
+        "kind": "archive",
+        "url": "https://github.com/oxc-project/oxc/releases/download/apps_v1.63.0/oxfmt-aarch64-unknown-linux-gnu.tar.gz",
+        "sha256": "29605bdacbbec8e5beb03f024b2ea8cf3b28743f92eaaaf2edc1a249de9eced8",
+        "os": "linux",
+        "cpu": "arm64",
+        "file": "oxfmt-aarch64-unknown-linux-gnu"
+      },
+      {
+        "kind": "archive",
+        "url": "https://github.com/oxc-project/oxc/releases/download/apps_v1.63.0/oxfmt-x86_64-unknown-linux-gnu.tar.gz",
+        "sha256": "678f646dd0eb1a3207a2f2ef7a4122e354ae5949872d9ae0b6e1017789cebdaa",
+        "os": "linux",
+        "cpu": "x86_64",
+        "file": "oxfmt-x86_64-unknown-linux-gnu"
+      }
+    ]
+  }
+}

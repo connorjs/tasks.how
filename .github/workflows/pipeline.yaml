@@ -19,9 +19,25 @@ jobs:
       - name: Checkout self
         uses: actions/checkout@v5
         with:
-          fetch-depth: 0
+          fetch-depth: 0 # Keep full history available for version-aware tooling.
 
-      - name: Setup Bazel
+      - name: Use .NET
+        uses: actions/setup-dotnet@v5
+        with:
+          global-json-file: global.json
+
+      - name: Restore .NET
+        run: |
+          dotnet tool restore
+          dotnet restore
+
+      - name: Format .NET
+        run: dotnet csharpier check .
+
+      - name: Build .NET
+        run: dotnet build --configuration Release --no-restore
+
+      - name: Set up Bazel
         uses: bazel-contrib/setup-bazel@0.15.0
         with:
           bazelisk-cache: true
@@ -35,8 +51,11 @@ jobs:
       - name: Format check
         run: bazel run //:format.check
 
-      - name: Test
-        run: bazel test //...
+      - name: Lint
+        run: bazel test //:lint
 
       - name: Build
         run: bazel build //...
+
+      - name: Test
+        run: bazel test --test_tag_filters=-lint //...
