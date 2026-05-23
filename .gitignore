@@ -1,5 +1,6 @@
 # Solution
 artifacts/
+node_modules/
 /bazel-*
 
 

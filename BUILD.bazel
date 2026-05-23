@@ -8,7 +8,9 @@ bazel_env(
     toolchains = {
         "nodejs": "@nodejs_toolchains//:resolved_toolchain",
     },
-    tools = multitool_tools,
+    tools = {
+    	"pnpm": "@pnpm//:pnpm",
+    } | multitool_tools,
 )
 
 # Enumerate all relevant gazelle directives for learning/reference (some may repeat default values)

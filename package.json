@@ -1,6 +1,14 @@
 {
-	"name": "@connorjs/tasks.how",
+	"name": "@connorjs/tasks.how.workspace",
 	"private": true,
 	"type": "module",
-	"packageManager": "pnpm@11.2.2"
+	"packageManager": "pnpm",
+	"devDependencies": {
+		"@tanstack/react-router": "catalog:",
+		"@tanstack/react-start": "catalog:",
+		"@vitejs/plugin-react": "catalog:",
+		"react": "catalog:",
+		"react-dom": "catalog:",
+		"vite": "catalog:"
+	}
 }
