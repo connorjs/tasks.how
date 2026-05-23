@@ -10,7 +10,7 @@ export default defineConfig({
 		router: {
 			entry: "router/router.ts",
 			routesDirectory: "routes",
-			generatedRouteTree: "route_tree/route_tree.gen.ts",
+			generatedRouteTree: "routes/route_tree.gen.ts",
 		},
 	}), react()],
 });

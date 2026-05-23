@@ -22,7 +22,6 @@ bazel_env(
 # gazelle:js_proto disabled
 # gazelle:js_npm_package disabled
 # gazelle:js_tsconfig_ignore allow_js
-# gazelle:js_tsconfig_ignore declaration
 # gazelle:js_tsconfig_ignore preserve_jsx
 # gazelle:js_validate_import_statements error
 # gazelle:js_project_naming_convention main

@@ -2,7 +2,6 @@
 	"$schema": "https://json.schemastore.org/tsconfig",
 	// https://www.typescriptlang.org/tsconfig
 	"compilerOptions": {
-		"baseUrl": ".",
 		"paths": {
 			// Create root-style paths for all packages.
 			// Use `@/` prefix to ensure this never resolves a “real” npm dependency.

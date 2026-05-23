@@ -1,17 +1,40 @@
+load("@aspect_bazel_lib//lib:write_source_files.bzl", "write_source_files")
 load("@aspect_rules_ts//ts:defs.bzl", "ts_project")
+load("@npm//:@tanstack/router-cli/package_json.bzl", tsr_bin = "bin")
+
+write_source_files(
+    name = "codegen",
+    files = {
+        "route_tree.gen.ts": ".route_tree.gen.ts",
+    },
+)
 
 ts_project(
     name = "main",
     srcs = [
         "__root.tsx",
         "index.tsx",
+        "route_tree.gen.ts",
     ],
+    declaration = True,
     emit_declaration_only = True,
     tsconfig = "//:tsconfig",
-    visibility = ["//example/web/route_tree:__pkg__"],
     deps = [
         "//:node_modules/@tanstack/react-router",
         "//:node_modules/@types/react",
         "//:node_modules/react",
     ],
+    visibility = ["//example/web/router:__pkg__"],
+)
+
+tsr_bin.tsr(
+    name = "tsr",
+    srcs = [
+        "__root.tsx",
+        "index.tsx",
+        "tsr.config.json",
+    ],
+    outs = [".route_tree.gen.ts"],
+    args = ["generate"],
+    chdir = package_name(),
 )

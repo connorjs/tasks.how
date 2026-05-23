@@ -5,6 +5,7 @@ ts_project(
     srcs = [
         "vite.config.ts",
     ],
+    declaration = True,
     emit_declaration_only = True,
     tsconfig = "//:tsconfig",
     deps = [
