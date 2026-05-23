@@ -1,0 +1,6 @@
+{
+	"name": "@connorjs/tasks.how",
+	"private": true,
+	"type": "module",
+	"packageManager": "pnpm@11.2.2"
+}

@@ -1,0 +1,26 @@
+packages: [] # Single root package.json
+
+## Bazel-driven configuration
+autoInstallPeers: false # Ensure peer deps exist in package.json
+strictPeerDependencies: true # Ensure peer deps exist in package.json
+resolvePeersFromWorkspaceRoot: false # For hermeticity
+hoist: false # rules_js requirement <https://docs.aspect.build/bazel/javascript#package-management-with-pnpm>
+pmOnFail: ignore # Bazel manages pnpm, so ignore the check
+savePrefix: "" # Pin to exact versions
+extendNodePath: false # For hermeticity
+
+## Catalog configuration
+catalogMode: strict
+cleanupUnusedCatalogs: true
+
+## Supply chain security
+allowBuilds: {}
+minimumReleaseAge: 4320 # 3 days
+minimumReleaseAgeIgnoreMissingTime: false
+minimumReleaseAgeStrict: true
+trustPolicy: no-downgrade
+ignoreScripts: true
+
+## Other
+updateNotifier: false # Defer to dependency update process
+

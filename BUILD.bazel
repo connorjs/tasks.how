@@ -1,0 +1,13 @@
+load("@bazel_env.bzl", "bazel_env")
+load("@multitool//:tools.bzl", multitool_tools = "TOOLS")
+load("@npm//:defs.bzl", "npm_link_all_packages")
+
+npm_link_all_packages(name = "node_modules")
+
+bazel_env(
+    name = "bazel_env",
+    toolchains = {
+        "nodejs": "@nodejs_toolchains//:resolved_toolchain",
+    },
+    tools = multitool_tools,
+)
