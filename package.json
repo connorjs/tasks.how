@@ -6,6 +6,7 @@
 	"devDependencies": {
 		"@tanstack/react-router": "catalog:",
 		"@tanstack/react-start": "catalog:",
+		"@tanstack/router-cli": "catalog:",
 		"@vitejs/plugin-react": "catalog:",
 		"react": "catalog:",
 		"react-dom": "catalog:",

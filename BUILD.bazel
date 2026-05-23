@@ -9,11 +9,12 @@ bazel_env(
         "nodejs": "@nodejs_toolchains//:resolved_toolchain",
     },
     tools = {
-    	"pnpm": "@pnpm//:pnpm",
+        "pnpm": "@pnpm//:pnpm",
     } | multitool_tools,
 )
 
 # Enumerate all relevant gazelle directives for learning/reference (some may repeat default values)
+# gazelle:exclude **/.*.gen.*
 # gazelle:js enabled
 # gazelle:js_tsconfig disabled
 # gazelle:js_proto disabled

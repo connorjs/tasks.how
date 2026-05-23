@@ -1,0 +1,14 @@
+load("@aspect_bazel_lib//lib:write_source_files.bzl", "write_source_files")
+load("@aspect_rules_js//js:defs.bzl", "js_library")
+
+js_library(
+    name = "main",
+    srcs = [
+        "vite.config.js",
+    ],
+    deps = [
+        "//:node_modules/@tanstack/react-start",
+        "//:node_modules/@vitejs/plugin-react",
+        "//:node_modules/vite",
+    ],
+)
