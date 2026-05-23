@@ -7,7 +7,7 @@
 			// Create root-style paths for all packages.
 			// Use `@/` prefix to ensure this never resolves a “real” npm dependency.
 			// Example: `import { bar } from "@/foo/bar";` is `/foo/bar.ts` or `/foo/bar/mod.ts`.
-			"@/*": ["./*", "./*/mod.ts"],
+			"@/*": ["./*", "./*/mod.js"],
 		},
 
 		// Type checking
@@ -24,7 +24,8 @@
 
 		// Modules
 		"allowArbitraryExtensions": true,
-		"allowImportingTsExtensions": true,
+		// Aspect Gazelle does not support `.ts` extensions.
+		"allowImportingTsExtensions": false,
 		"module": "esnext",
 		"moduleResolution": "bundler",
 

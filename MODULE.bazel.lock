@@ -313,7 +313,7 @@
     "@@aspect_tools_telemetry+//:extension.bzl%telemetry": {
       "general": {
         "bzlTransitiveDigest": "cl5A2O84vDL6Tt+Qga8FCj1DUDGqn+e7ly5rZ+4xvcc=",
-        "usagesDigest": "ZIyzFnpRRzueoNYHPjLFSlOP0V5drL+Hg35QJ/+saPo=",
+        "usagesDigest": "E7FN+H8h98l0DUrd89x4gysCZu72neVa10vMazolf+M=",
         "recordedInputs": [
           "REPO_MAPPING:aspect_tools_telemetry+,bazel_lib bazel_lib+",
           "REPO_MAPPING:aspect_tools_telemetry+,bazel_skylib bazel_skylib+"
@@ -324,6 +324,7 @@
             "attributes": {
               "deps": {
                 "aspect_rules_js": "3.1.2",
+                "aspect_rules_ts": "3.8.10",
                 "aspect_tools_telemetry": "0.3.3"
               }
             }

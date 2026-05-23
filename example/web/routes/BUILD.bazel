@@ -1,11 +1,15 @@
-load("@aspect_rules_js//js:defs.bzl", "js_library")
+load("@aspect_rules_ts//ts:defs.bzl", "ts_project")
 
-js_library(
+ts_project(
     name = "main",
     srcs = [
         "__root.tsx",
         "index.tsx",
     ],
     visibility = ["//example/web/route_tree:__pkg__"],
-    deps = ["//:node_modules/@tanstack/react-router"],
+    deps = [
+        "//:node_modules/@tanstack/react-router",
+        "//:node_modules/@types/react",
+        "//:node_modules/react",
+    ],
 )
