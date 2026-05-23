@@ -12,8 +12,8 @@ write_source_files(
 js_library(
     name = "main",
     srcs = ["route_tree.gen.js"],
+    visibility = ["//example/web/router:__pkg__"],
     deps = ["//example/web/routes:main"],
-    visibility = ["//example/web/router:__pkg__"]
 )
 
 tsr_bin.tsr(
