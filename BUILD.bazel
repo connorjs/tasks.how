@@ -1,8 +1,7 @@
+load("@aspect_gazelle_prebuilt//:def.bzl", "aspect_gazelle")
 load("@bazel_env.bzl", "bazel_env")
 load("@multitool//:tools.bzl", multitool_tools = "TOOLS")
 load("@npm//:defs.bzl", "npm_link_all_packages")
-
-npm_link_all_packages(name = "node_modules")
 
 bazel_env(
     name = "bazel_env",
@@ -11,3 +10,19 @@ bazel_env(
     },
     tools = multitool_tools,
 )
+
+# Enumerate all relevant gazelle directives for learning/reference (some may repeat default values)
+# gazelle:js enabled
+# gazelle:js_tsconfig disabled
+# gazelle:js_proto disabled
+# gazelle:js_npm_package disabled
+# gazelle:js_validate_import_statements error
+# gazelle:js_project_naming_convention main
+# gazelle:js_tests_naming_convention test
+# gazelle:js_files **/*.{js,jsx,mjs,cjs,ts,tsx,mts,cts}
+aspect_gazelle(
+    name = "gazelle",
+    languages = ["js"],
+)
+
+npm_link_all_packages(name = "node_modules")
