@@ -1,6 +1,5 @@
 load("@aspect_bazel_lib//lib:write_source_files.bzl", "write_source_files")
 load("@aspect_rules_js//js:defs.bzl", "js_library")
-load("@npm//:vite/package_json.bzl", vite_bin = "bin")
 
 js_library(
     name = "main",
@@ -12,12 +11,4 @@ js_library(
         "//:node_modules/@vitejs/plugin-react",
         "//:node_modules/vite",
     ],
-)
-
-vite_bin.vite(
-	name = "vite_build",
-	srcs = [
-		":main",
-		":"
-	],
 )
