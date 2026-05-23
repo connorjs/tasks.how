@@ -9,6 +9,7 @@ bazel_env(
         "nodejs": "@nodejs_toolchains//:resolved_toolchain",
     },
     tools = {
+    	"node": "$(NODE_PATH)",
         "pnpm": "@pnpm//:pnpm",
     } | multitool_tools,
 )
