@@ -1,6 +1,5 @@
 {
 	"routesDirectory": "../routes",
-	"generatedRouteTree": ".route_tree.gen.js",
-	"disableTypes": true,
+	"generatedRouteTree": ".route_tree.gen.ts",
 	"target": "react"
 }

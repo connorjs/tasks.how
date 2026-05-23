@@ -5,13 +5,13 @@ load("@npm//:@tanstack/router-cli/package_json.bzl", tsr_bin = "bin")
 write_source_files(
     name = "codegen",
     files = {
-        "route_tree.gen.js": ".route_tree.gen.js",
+        "route_tree.gen.ts": ".route_tree.gen.ts",
     },
 )
 
 js_library(
     name = "main",
-    srcs = ["route_tree.gen.js"],
+    srcs = ["route_tree.gen.ts"],
     visibility = ["//example/web/router:__pkg__"],
     deps = ["//example/web/routes:main"],
 )
@@ -22,7 +22,7 @@ tsr_bin.tsr(
         "tsr.config.json",
         "//example/web/routes:main",
     ],
-    outs = [".route_tree.gen.js"],
+    outs = [".route_tree.gen.ts"],
     args = ["generate"],
     chdir = package_name(),
 )

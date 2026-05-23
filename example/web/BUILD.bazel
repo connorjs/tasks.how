@@ -4,7 +4,7 @@ load("@aspect_rules_js//js:defs.bzl", "js_library")
 js_library(
     name = "main",
     srcs = [
-        "vite.config.js",
+        "vite.config.ts",
     ],
     deps = [
         "//:node_modules/@tanstack/react-start",

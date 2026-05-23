@@ -2,7 +2,7 @@ load("@aspect_rules_js//js:defs.bzl", "js_library")
 
 js_library(
     name = "main",
-    srcs = ["router.js"],
+    srcs = ["router.ts"],
     deps = [
         "//:node_modules/@tanstack/react-router",
         "//example/web/route_tree:main",

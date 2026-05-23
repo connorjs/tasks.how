@@ -8,11 +8,9 @@ export default defineConfig({
 	plugins: [tanstackStart({
 		srcDirectory: ".",
 		router: {
-			entry: "router/router.js",
+			entry: "router/router.ts",
 			routesDirectory: "routes",
-			generatedRouteTree: "route_tree/route_tree.gen.js",
-			disableTypes: true,
-			target: "react",
+			generatedRouteTree: "route_tree/route_tree.gen.ts",
 		},
 	}), react()],
 });
