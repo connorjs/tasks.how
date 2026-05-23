@@ -1,5 +1,4 @@
 load("@aspect_gazelle_prebuilt//:def.bzl", "aspect_gazelle")
-load("@aspect_rules_js//js:defs.bzl", "js_library")
 load("@bazel_env.bzl", "bazel_env")
 load("@multitool//:tools.bzl", multitool_tools = "TOOLS")
 load("@npm//:defs.bzl", "npm_link_all_packages")
@@ -10,7 +9,7 @@ bazel_env(
         "nodejs": "@nodejs_toolchains//:resolved_toolchain",
     },
     tools = {
-        "node": "$(NODE_PATH)",
+    	"node": "$(NODE_PATH)",
         "pnpm": "@pnpm//:pnpm",
     } | multitool_tools,
 )
@@ -24,16 +23,10 @@ bazel_env(
 # gazelle:js_validate_import_statements error
 # gazelle:js_project_naming_convention main
 # gazelle:js_tests_naming_convention test
-# gazelle:js_files **/*.{ts,tsx,mts,cts}
+# gazelle:js_files **/*.{js,jsx,mjs,cjs,ts,tsx,mts,cts}
 aspect_gazelle(
     name = "gazelle",
     languages = ["js"],
 )
 
 npm_link_all_packages(name = "node_modules")
-
-js_library(
-    name = "tsconfig",
-    srcs = ["tsconfig.json"],
-    visibility = ["//visibility:public"],
-)
