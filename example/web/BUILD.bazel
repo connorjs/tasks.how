@@ -5,6 +5,7 @@ ts_project(
     srcs = [
         "vite.config.ts",
     ],
+    emit_declaration_only = True,
     tsconfig = "//:tsconfig",
     deps = [
         "//:node_modules/@tanstack/react-start",

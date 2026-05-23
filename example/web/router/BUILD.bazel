@@ -3,6 +3,7 @@ load("@aspect_rules_ts//ts:defs.bzl", "ts_project")
 ts_project(
     name = "main",
     srcs = ["router.ts"],
+    emit_declaration_only = True,
     tsconfig = "//:tsconfig",
     deps = [
         "//:node_modules/@tanstack/react-router",

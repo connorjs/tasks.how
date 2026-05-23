@@ -6,6 +6,7 @@ ts_project(
         "__root.tsx",
         "index.tsx",
     ],
+    emit_declaration_only = True,
     tsconfig = "//:tsconfig",
     visibility = ["//example/web/route_tree:__pkg__"],
     deps = [
