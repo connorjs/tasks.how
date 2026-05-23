@@ -1,4 +1,5 @@
 load("@aspect_gazelle_prebuilt//:def.bzl", "aspect_gazelle")
+load("@aspect_rules_ts//ts:defs.bzl", "ts_config")
 load("@bazel_env.bzl", "bazel_env")
 load("@multitool//:tools.bzl", multitool_tools = "TOOLS")
 load("@npm//:defs.bzl", "npm_link_all_packages")
@@ -17,9 +18,13 @@ bazel_env(
 # Enumerate all relevant gazelle directives for learning/reference (some may repeat default values)
 # gazelle:exclude **/.*.gen.*
 # gazelle:js enabled
-# gazelle:js_tsconfig disabled
+# gazelle:js_tsconfig enabled
 # gazelle:js_proto disabled
 # gazelle:js_npm_package disabled
+# gazelle:js_tsconfig_ignore allow_js
+# gazelle:js_tsconfig_ignore declaration
+# gazelle:js_tsconfig_ignore emit_declaration_only
+# gazelle:js_tsconfig_ignore preserve_jsx
 # gazelle:js_validate_import_statements error
 # gazelle:js_project_naming_convention main
 # gazelle:js_tests_naming_convention test
@@ -30,3 +35,9 @@ aspect_gazelle(
 )
 
 npm_link_all_packages(name = "node_modules")
+
+ts_config(
+    name = "tsconfig",
+    src = "tsconfig.json",
+    visibility = ["//visibility:public"],
+)

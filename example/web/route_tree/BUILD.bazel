@@ -12,6 +12,7 @@ write_source_files(
 ts_project(
     name = "main",
     srcs = ["route_tree.gen.ts"],
+    tsconfig = "//:tsconfig",
     visibility = ["//example/web/router:__pkg__"],
     deps = ["//example/web/routes:main"],
 )

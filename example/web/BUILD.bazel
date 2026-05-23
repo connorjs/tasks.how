@@ -1,4 +1,3 @@
-load("@aspect_bazel_lib//lib:write_source_files.bzl", "write_source_files")
 load("@aspect_rules_ts//ts:defs.bzl", "ts_project")
 
 ts_project(
@@ -6,6 +5,7 @@ ts_project(
     srcs = [
         "vite.config.ts",
     ],
+    tsconfig = "//:tsconfig",
     deps = [
         "//:node_modules/@tanstack/react-start",
         "//:node_modules/@vitejs/plugin-react",

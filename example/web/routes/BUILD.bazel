@@ -6,6 +6,7 @@ ts_project(
         "__root.tsx",
         "index.tsx",
     ],
+    tsconfig = "//:tsconfig",
     visibility = ["//example/web/route_tree:__pkg__"],
     deps = [
         "//:node_modules/@tanstack/react-router",
