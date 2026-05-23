@@ -1,23 +1,20 @@
 load("@aspect_bazel_lib//lib:write_source_files.bzl", "write_source_files")
-load("@aspect_rules_js//js:defs.bzl", "js_library")
+load("@aspect_rules_ts//ts:defs.bzl", "ts_project")
 load("@npm//:vite/package_json.bzl", vite_bin = "bin")
 
-js_library(
+ts_project(
     name = "main",
     srcs = [
-        "vite.config.js",
+        "vite.config.ts",
     ],
+    allow_js = False,
+    declaration = True,
+    emit_declaration_only = True,
+    preserve_jsx = False,
+    tsconfig = "//:tsconfig",
     deps = [
         "//:node_modules/@tanstack/react-start",
         "//:node_modules/@vitejs/plugin-react",
         "//:node_modules/vite",
     ],
-)
-
-vite_bin.vite(
-	name = "vite_build",
-	srcs = [
-		":main",
-		":"
-	],
 )

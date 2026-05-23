@@ -1,8 +1,13 @@
-load("@aspect_rules_js//js:defs.bzl", "js_library")
+load("@aspect_rules_ts//ts:defs.bzl", "ts_project")
 
-js_library(
+ts_project(
     name = "main",
-    srcs = ["router.js"],
+    srcs = ["router.ts"],
+    allow_js = False,
+    declaration = True,
+    emit_declaration_only = True,
+    preserve_jsx = False,
+    tsconfig = "//:tsconfig",
     deps = [
         "//:node_modules/@tanstack/react-router",
         "//example/web/route_tree:main",
