@@ -10,4 +10,5 @@ ts_project(
         "//:node_modules/@tanstack/react-router",
         "//example/web/routes:main",
     ],
+    visibility = ["//example/web:__pkg__"],
 )
