@@ -20,6 +20,7 @@ vite_bin.vite(
     name = "vite_build",
     srcs = [
         ":main",
+        "//:tsconfig",
         "//example/web/routes:main",
     ],
     args = ["build"],
