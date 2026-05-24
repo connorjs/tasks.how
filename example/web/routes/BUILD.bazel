@@ -1,6 +1,6 @@
 load("@aspect_bazel_lib//lib:write_source_files.bzl", "write_source_files")
 load("@npm//:@tanstack/router-cli/package_json.bzl", tsr_bin = "bin")
-load("//:ts_library.bzl", "ts_library")
+load("//tools/typescript:defs.bzl", "ts_library")
 
 write_source_files(
     name = "codegen",

@@ -34,7 +34,7 @@ format_multirun(
 # gazelle:js_tsconfig_ignore allow_js
 # gazelle:js_tsconfig_ignore preserve_jsx
 # gazelle:js_validate_import_statements error
-# gazelle:map_kind ts_project ts_library //:ts_library.bzl
+# gazelle:map_kind ts_project ts_library //tools/typescript:defs.bzl
 # gazelle:js_project_naming_convention main
 # gazelle:js_tests_naming_convention test
 # gazelle:js_files **/*.{js,jsx,mjs,cjs,ts,tsx,mts,cts}
