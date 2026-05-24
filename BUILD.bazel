@@ -17,6 +17,7 @@ bazel_env(
 
 # Enumerate all relevant gazelle directives for learning/reference (some may repeat default values)
 # gazelle:exclude **/.*.gen.*
+# gazelle:alias_kind ts_library ts_project
 # gazelle:js enabled
 # gazelle:js_tsconfig enabled
 # gazelle:js_proto disabled
@@ -24,6 +25,7 @@ bazel_env(
 # gazelle:js_tsconfig_ignore allow_js
 # gazelle:js_tsconfig_ignore preserve_jsx
 # gazelle:js_validate_import_statements error
+# gazelle:map_kind ts_project ts_library //:ts_library.bzl
 # gazelle:js_project_naming_convention main
 # gazelle:js_tests_naming_convention test
 # gazelle:js_files **/*.{js,jsx,mjs,cjs,ts,tsx,mts,cts}

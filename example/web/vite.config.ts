@@ -10,7 +10,7 @@ export default defineConfig({
 		srcDirectory: ".",
 		router: {
 			routeFileIgnorePattern: "\\.gen\\.",
-			entry: "router/router.ts",
+			entry: "router/router",
 			routesDirectory: "routes",
 			generatedRouteTree: "routes/route_tree.gen.ts",
 		},

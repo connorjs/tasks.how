@@ -1,6 +1,6 @@
 load("@aspect_bazel_lib//lib:write_source_files.bzl", "write_source_files")
-load("@aspect_rules_ts//ts:defs.bzl", "ts_project")
 load("@npm//:@tanstack/router-cli/package_json.bzl", tsr_bin = "bin")
+load("//:ts_library.bzl", "ts_library")
 
 write_source_files(
     name = "codegen",
@@ -9,7 +9,7 @@ write_source_files(
     },
 )
 
-ts_project(
+ts_library(
     name = "main",
     srcs = [
         "__root.tsx",
@@ -19,12 +19,13 @@ ts_project(
     declaration = True,
     emit_declaration_only = True,
     tsconfig = "//:tsconfig",
+    visibility = ["//example/web:__subpackages__"],
     deps = [
         "//:node_modules/@tanstack/react-router",
+        "//:node_modules/@tanstack/react-start",
         "//:node_modules/@types/react",
         "//:node_modules/react",
     ],
-    visibility = ["//example/web:__subpackages__"],
 )
 
 tsr_bin.tsr(

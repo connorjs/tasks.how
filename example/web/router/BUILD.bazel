@@ -1,14 +1,14 @@
-load("@aspect_rules_ts//ts:defs.bzl", "ts_project")
+load("//:ts_library.bzl", "ts_library")
 
-ts_project(
+ts_library(
     name = "main",
     srcs = ["router.ts"],
     declaration = True,
     emit_declaration_only = True,
     tsconfig = "//:tsconfig",
+    visibility = ["//example/web:__pkg__"],
     deps = [
         "//:node_modules/@tanstack/react-router",
         "//example/web/routes:main",
     ],
-    visibility = ["//example/web:__pkg__"],
 )
