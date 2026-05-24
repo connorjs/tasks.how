@@ -10,6 +10,7 @@ export const Route = createRootRoute({
 		],
 	}),
 	component: RootComponent,
+	notFoundComponent: NotFoundComponent,
 });
 
 function RootComponent() {
@@ -31,5 +32,16 @@ function RootDocument(props: { children: ReactNode }) {
 				<Scripts />
 			</body>
 		</html>
+	);
+}
+
+function NotFoundComponent() {
+	return (
+		<RootDocument>
+			<main>
+				<h1>Page not found</h1>
+				<p>The requested route does not exist.</p>
+			</main>
+		</RootDocument>
 	);
 }

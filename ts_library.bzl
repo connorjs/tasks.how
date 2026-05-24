@@ -42,7 +42,9 @@ def ts_library(
 
 def _is_external_dep(dep):
     """Returns true if the given dep is an external dependency."""
-    return type(dep) != "string" or not dep.startswith("//") or dep.startswith("//:node_modules/")
+
+    # Note: This is heuristically valid for THIS repository only. Copiers: Beware.
+    return type(dep) != "string" or not dep.startswith("//") or dep.startswith("//:")
 
 def _types_dep(dep):
     """Returns the types dependency for the given dep."""
