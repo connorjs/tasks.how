@@ -2,5 +2,8 @@
 	"routesDirectory": ".",
 	"generatedRouteTree": ".route_tree.gen.ts",
 	"routeFileIgnorePattern": "\\.(entry|gen)\\.",
-	"target": "react"
+	"target": "react",
+	"routeTreeFileFooter": [
+		"import type { getRouter } from './router.entry.ts'\nimport type { createStart } from '@tanstack/react-start'\ndeclare module '@tanstack/react-start' {\n  interface Register {\n    ssr: true\n    router: Awaited<ReturnType<typeof getRouter>>\n  }\n}"
+	]
 }
