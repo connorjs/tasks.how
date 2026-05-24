@@ -26,6 +26,7 @@ ts_library(
         "//:node_modules/@tanstack/react-start",
         "//:node_modules/@types/react",
         "//:node_modules/react",
+        "//example/hello_ts:main",
     ],
 )
 

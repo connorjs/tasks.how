@@ -1,0 +1,10 @@
+load("//:ts_library.bzl", "ts_library")
+
+ts_library(
+    name = "main",
+    srcs = ["hello.ts"],
+    declaration = True,
+    emit_declaration_only = True,
+    tsconfig = "//:tsconfig",
+    visibility = ["//example/web:__subpackages__"],
+)
