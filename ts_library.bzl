@@ -9,15 +9,14 @@ def ts_library(
         visibility = None,
         testonly = None,
         tags = [],
-        **kwargs
-):
-	"""
-	Macro that produces a `js_library` (`${name}`) and a `ts_project` (`${name}_types`) for the given sources.
-	Automatically configures the correct dependencies for `js_library` (the given deps) and `ts_project` (the types of the given deps).
+        **kwargs):
+    """
+    Macro that produces a `js_library` (`${name}`) and a `ts_project` (`${name}_types`) for the given sources.
+    Automatically configures the correct dependencies for `js_library` (the given deps) and `ts_project` (the types of the given deps).
 
-	The `js_library` includes native TypeScript sources.
-	The `ts_project` includes the generated `.d.ts` files.
-	"""
+    The `js_library` includes native TypeScript sources.
+    The `ts_project` includes the generated `.d.ts` files.
+    """
 
     types_name = name + "_types"
 
@@ -42,11 +41,11 @@ def ts_library(
     )
 
 def _is_external_dep(dep):
-	"""Returns true if the given dep is an external dependency."""
+    """Returns true if the given dep is an external dependency."""
     return type(dep) != "string" or not dep.startswith("//") or dep.startswith("//:node_modules/")
 
 def _types_dep(dep):
-	"""Returns the types dependency for the given dep."""
+    """Returns the types dependency for the given dep."""
     if _is_external_dep(dep):
         return dep
     if ":" not in dep:
