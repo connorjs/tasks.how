@@ -9,8 +9,8 @@ export default defineConfig({
 	plugins: [tanstackStart({
 		srcDirectory: ".",
 		router: {
-			routeFileIgnorePattern: "\\.gen\\.",
-			entry: "router/router",
+			routeFileIgnorePattern: "\\.(entry|gen)\\.",
+			entry: "routes/router.entry",
 			routesDirectory: "routes",
 			generatedRouteTree: "routes/route_tree.gen.ts",
 		},
