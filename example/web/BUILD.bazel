@@ -1,3 +1,4 @@
+load("@aspect_rules_js//js:defs.bzl", "js_run_devserver")
 load("@npm//:vite/package_json.bzl", vite_bin = "bin")
 load("//:ts_library.bzl", "ts_library")
 
@@ -12,18 +13,34 @@ ts_library(
     deps = [
         "//:node_modules/@tanstack/react-start",
         "//:node_modules/@vitejs/plugin-react",
+        "//:node_modules/react-dom",
         "//:node_modules/vite",
+        "//:node_modules/vite-tsconfig-paths",
     ],
 )
 
+vite_srcs = [
+    ":main",
+    "//:tsconfig",
+    "//example/web/routes:main",
+]
+
 vite_bin.vite(
     name = "vite_build",
-    srcs = [
-        ":main",
-        "//:tsconfig",
-        "//example/web/routes:main",
-    ],
+    srcs = vite_srcs,
     args = ["build"],
     chdir = package_name(),
     out_dirs = ["dist"],
+)
+
+vite_bin.vite_binary(
+    name = "vite",
+)
+
+js_run_devserver(
+    name = "web",
+    args = ["dev"],
+    chdir = package_name(),
+    data = vite_srcs,
+    tool = ":vite",
 )
