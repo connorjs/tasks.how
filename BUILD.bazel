@@ -1,4 +1,5 @@
 load("@aspect_gazelle_prebuilt//:def.bzl", "aspect_gazelle")
+load("@aspect_rules_lint//format:defs.bzl", "format_multirun")
 load("@aspect_rules_ts//ts:defs.bzl", "ts_config")
 load("@bazel_env.bzl", "bazel_env")
 load("@multitool//:tools.bzl", multitool_tools = "TOOLS")
@@ -13,6 +14,11 @@ bazel_env(
         "node": "$(NODE_PATH)",
         "pnpm": "@pnpm//:pnpm",
     } | multitool_tools,
+)
+
+format_multirun(
+    name = "format",
+    starlark = "@buildifier_prebuilt//:buildifier",
 )
 
 # Enumerate all relevant gazelle directives for learning/reference (some may repeat default values)
