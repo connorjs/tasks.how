@@ -12,11 +12,8 @@ ts_library(
     tsconfig = "//:tsconfig",
     deps = [
         "//:node_modules/@tanstack/react-start",
-        "//:node_modules/@types/node",
         "//:node_modules/@vitejs/plugin-react",
         "//:node_modules/vite",
-        "//:node_modules/vite-tsconfig-paths",
-        "//:tsconfig",
     ],
 )
 

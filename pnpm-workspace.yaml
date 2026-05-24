@@ -13,7 +13,6 @@ catalog:
   react-dom: 19.2.6
   typescript: 6.0.3
   vite: 8.0.13
-  vite-tsconfig-paths: 7.0.0-alpha.1
 
 overrides:
   # Can be removed once <https://github.com/cheeriojs/cheerio/pull/5157> merges

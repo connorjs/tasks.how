@@ -14,8 +14,7 @@
 		"react": "catalog:",
 		"react-dom": "catalog:",
 		"typescript": "catalog:",
-		"vite": "catalog:",
-		"vite-tsconfig-paths": "catalog:"
+		"vite": "catalog:"
 	},
 	"packageManager": "pnpm@11.2.2"
 }
