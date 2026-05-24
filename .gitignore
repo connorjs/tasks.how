@@ -1,4 +1,5 @@
 # Solution
+.cache/
 artifacts/
 node_modules/
 /bazel-*
