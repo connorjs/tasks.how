@@ -14,8 +14,8 @@ ts_library(
     srcs = [
         "__root.tsx",
         "index.tsx",
-        "router.entry.ts",
         "route_tree.gen.ts",
+        "router.entry.ts",
     ],
     declaration = True,
     emit_declaration_only = True,
