@@ -4,5 +4,5 @@
 See <https://bazel.build/rules/lib/globals/repo>.
 """
 ignore_directories([
-	 "**/node_modules",
+    "**/node_modules",
 ])

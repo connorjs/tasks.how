@@ -6,7 +6,7 @@
 			// Create root-style paths for all packages.
 			// Use `@/` prefix to ensure this never resolves a “real” npm dependency.
 			// Example: `import { bar } from "@/foo/bar";` is `/foo/bar.ts` or `/foo/bar/mod.ts`.
-			"@/*": ["./*", "./*/mod.js"]
+			"@/*": ["./*", "./*/mod"]
 		},
 
 		// Type checking

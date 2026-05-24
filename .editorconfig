@@ -13,8 +13,8 @@ trim_trailing_whitespace = true
 indent_style = tab
 
 [*.{bazel,bzl}]
-# Bazel disallows tabs
-indent_size = 2
+# Bazel disallows tabs and wants 4 spaces
+indent_size = 4
 indent_style = space
 
 [*.{yml,yaml}]
