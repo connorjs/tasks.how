@@ -1,0 +1,13 @@
+load("@npm//:oxfmt/package_json.bzl", oxfmt_bin = "bin")
+
+oxfmt_bin.oxfmt_binary(
+    name = "oxfmt",
+    args = [
+        "--disable-nested-config",
+        "--no-error-on-unmatched-pattern",
+    ],
+    env = {
+        "BAZEL_BINDIR": ".",
+    },
+    visibility = ["//visibility:public"],
+)

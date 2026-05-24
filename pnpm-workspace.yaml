@@ -8,6 +8,7 @@ catalog:
   '@types/react': 19.2.15
   '@types/react-dom': 19.2.3
   '@vitejs/plugin-react': 6.0.2
+  oxfmt: 0.51.0
   react: 19.2.6
   react-dom: 19.2.6
   typescript: 6.0.3
@@ -34,7 +35,8 @@ catalogMode: strict
 cleanupUnusedCatalogs: true
 
 ## Supply chain security
-allowBuilds: {}
+allowBuilds:
+  __bazel_needs_allowBuilds_do_not_delete__: false
 minimumReleaseAge: 4320 # 3 days
 minimumReleaseAgeIgnoreMissingTime: false
 minimumReleaseAgeStrict: true

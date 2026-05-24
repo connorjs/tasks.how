@@ -18,6 +18,9 @@ bazel_env(
 
 format_multirun(
     name = "format",
+    javascript = "//tools/oxfmt",
+    javascript_check_args = ["--check"],
+    javascript_fix_args = ["--write"],
     starlark = "@buildifier_prebuilt//:buildifier",
 )
 
