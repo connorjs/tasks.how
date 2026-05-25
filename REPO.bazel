@@ -1,0 +1,8 @@
+"""
+`REPO.bazel` defines global repository settings.
+
+See <https://bazel.build/rules/lib/globals/repo>.
+"""
+ignore_directories([
+    "**/node_modules",
+])

@@ -26,6 +26,13 @@ jobs:
         with:
           global-json-file: global.json
 
+      - name: Setup Bazel
+        uses: bazel-contrib/setup-bazel@0.15.0
+        with:
+          bazelisk-cache: true
+          disk-cache: ${{ github.workflow }}
+          repository-cache: true
+
       - name: Restore
         run: |
           dotnet tool restore
@@ -34,5 +41,11 @@ jobs:
       - name: Format
         run: dotnet csharpier check .
 
+      - name: Bazel Format
+        run: bazel run //:format.check
+
       - name: Build
         run: dotnet build --configuration Release --no-restore
+
+      - name: Bazel Test
+        run: bazel test //...

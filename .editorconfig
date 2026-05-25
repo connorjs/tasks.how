@@ -12,6 +12,11 @@ trim_trailing_whitespace = true
 # Use tabs: https://alexandersandberg.com/articles/default-to-tabs-instead-of-spaces-for-an-accessible-first-environment/
 indent_style = tab
 
+[*.{bazel,bzl}]
+# Bazel disallows tabs and wants 4 spaces
+indent_size = 4
+indent_style = space
+
 [*.{yml,yaml}]
 # YAML disallows tabs
 indent_size = 2

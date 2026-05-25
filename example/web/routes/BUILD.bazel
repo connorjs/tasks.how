@@ -1,0 +1,44 @@
+load("@aspect_bazel_lib//lib:write_source_files.bzl", "write_source_files")
+load("@npm//:@tanstack/router-cli/package_json.bzl", tsr_bin = "bin")
+load("//tools/typescript:defs.bzl", "ts_library")
+
+write_source_files(
+    name = "codegen",
+    files = {
+        "route_tree.gen.ts": ".route_tree.gen.ts",
+    },
+)
+
+ts_library(
+    name = "main",
+    srcs = [
+        "__root.tsx",
+        "index.tsx",
+        "route_tree.gen.ts",
+        "router.entry.ts",
+    ],
+    declaration = True,
+    emit_declaration_only = True,
+    tsconfig = "//:tsconfig",
+    visibility = ["//example/web:__subpackages__"],
+    deps = [
+        "//:node_modules/@tanstack/react-router",
+        "//:node_modules/@tanstack/react-start",
+        "//:node_modules/@types/react",
+        "//:node_modules/react",
+        "//example/hello_ts:main",
+    ],
+)
+
+tsr_bin.tsr(
+    name = "tsr",
+    srcs = [
+        "__root.tsx",
+        "index.tsx",
+        "router.entry.ts",
+        "tsr.config.json",
+    ],
+    outs = [".route_tree.gen.ts"],
+    args = ["generate"],
+    chdir = package_name(),
+)
