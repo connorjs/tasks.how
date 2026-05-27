@@ -1,0 +1,12 @@
+load("@npm//:prettier/package_json.bzl", prettier_bin = "bin")
+
+prettier_bin.prettier_binary(
+    name = "prettier",
+    args = [
+        "--no-error-on-unmatched-pattern",
+    ],
+    env = {
+        "BAZEL_BINDIR": ".",
+    },
+    visibility = ["//visibility:public"],
+)

@@ -2,8 +2,21 @@ load("@aspect_gazelle_prebuilt//:def.bzl", "aspect_gazelle")
 load("@aspect_rules_lint//format:defs.bzl", "format_multirun")
 load("@aspect_rules_ts//ts:defs.bzl", "ts_config")
 load("@bazel_env.bzl", "bazel_env")
-load("@multitool//:tools.bzl", multitool_tools = "TOOLS")
+load("@multitool//:tools.bzl", _multitool_tools = "TOOLS")
 load("@npm//:defs.bzl", "npm_link_all_packages")
+
+# Remove pre-defined tools that we do not use to avoid downloading them.
+# Prefer a deny-list approach so newly added tools get included automatically.
+not_needed_tools = [
+    "cue",
+    "gofumpt",
+    "jsonnetfmt",
+    "terraform",
+    "shellcheck",
+    "ty",
+]
+
+multitool_tools = {k: v for k, v in _multitool_tools.items() if k not in not_needed_tools}
 
 bazel_env(
     name = "bazel_env",
@@ -18,10 +31,16 @@ bazel_env(
 
 format_multirun(
     name = "format",
+    css = "//tools/prettier",
+    html = "//tools/prettier",
     javascript = "//tools/oxfmt",
     javascript_check_args = ["--check"],
     javascript_fix_args = ["--write"],
+    markdown = "//tools/prettier",
+    python = "@aspect_rules_lint//format:ruff",
+    shell = "@aspect_rules_lint//format:shfmt",
     starlark = "@buildifier_prebuilt//:buildifier",
+    yaml = "@aspect_rules_lint//format:yamlfmt",
 )
 
 # Enumerate all relevant gazelle directives for learning/reference (some may repeat default values)
