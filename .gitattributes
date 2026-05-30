@@ -3,3 +3,6 @@
 
 # Treat these as binary (no EOL conversion)
 *.png binary
+
+# Treat these as generated (GitHub will automatically collapse the diff)
+*.gen.* linguist-generated

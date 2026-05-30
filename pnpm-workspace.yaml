@@ -1,4 +1,5 @@
 packages: [] # Single root package.json
+
 catalog:
   '@tanstack/react-router': 1.170.5
   '@tanstack/react-start': 1.168.7
@@ -13,11 +14,14 @@ catalog:
   react-dom: 19.2.6
   typescript: 6.0.3
   vite: 8.0.13
+
 overrides:
   # Can be removed once <https://github.com/cheeriojs/cheerio/pull/5157> merges
   encoding-sniffer: 1.0.2
+
   # Override v6 dependency (v7 was min Node.js breaking only)
   semver: 7.8.0
+
 ## Bazel-driven configuration
 autoInstallPeers: false # Ensure peer deps exist in package.json
 strictPeerDependencies: true # Ensure peer deps exist in package.json
@@ -26,9 +30,11 @@ hoist: false # rules_js requirement <https://docs.aspect.build/bazel/javascript#
 pmOnFail: ignore # Bazel manages pnpm, so ignore the check
 savePrefix: "" # Pin to exact versions
 extendNodePath: false # For hermeticity
+
 ## Catalog configuration
 catalogMode: strict
 cleanupUnusedCatalogs: true
+
 ## Supply chain security
 allowBuilds:
   __bazel_needs_allowBuilds_do_not_delete__: false
@@ -37,5 +43,6 @@ minimumReleaseAgeIgnoreMissingTime: false
 minimumReleaseAgeStrict: true
 trustPolicy: no-downgrade
 ignoreScripts: true
+
 ## Other
 updateNotifier: false # Defer to dependency update process

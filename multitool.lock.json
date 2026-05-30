@@ -28,6 +28,34 @@
 			}
 		]
 	},
+	"just-lsp": {
+		"binaries": [
+			{
+				"kind": "archive",
+				"url": "https://github.com/terror/just-lsp/releases/download/0.4.5/just-lsp-0.4.5-aarch64-apple-darwin.tar.gz",
+				"file": "just-lsp",
+				"sha256": "db8ddaa732ab674217a1eb069ce91c16f319aaa9131845fb4b56f72b46e6d6e7",
+				"os": "macos",
+				"cpu": "arm64"
+			},
+			{
+				"kind": "archive",
+				"url": "https://github.com/terror/just-lsp/releases/download/0.4.5/just-lsp-0.4.5-aarch64-unknown-linux-musl.tar.gz",
+				"file": "just-lsp",
+				"sha256": "09848eb8ff89b6af8ef60d70a22a2363b7591d293088c88b1fb34a4fdd70dfcc",
+				"os": "linux",
+				"cpu": "arm64"
+			},
+			{
+				"kind": "archive",
+				"url": "https://github.com/terror/just-lsp/releases/download/0.4.5/just-lsp-0.4.5-x86_64-unknown-linux-musl.tar.gz",
+				"file": "just-lsp",
+				"sha256": "2bac1289cc9662363bba41586f2e50f05360d954842e200be192acbde5fa02e4",
+				"os": "linux",
+				"cpu": "x86_64"
+			}
+		]
+	},
 	"multitool": {
 		"binaries": [
 			{
