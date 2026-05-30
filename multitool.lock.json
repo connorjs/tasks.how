@@ -1,3 +1,87 @@
 {
-	"$schema": "https://raw.githubusercontent.com/theoremlp/rules_multitool/main/lockfile.schema.json"
+	"$schema": "https://raw.githubusercontent.com/theoremlp/rules_multitool/main/lockfile.schema.json",
+	"just": {
+		"binaries": [
+			{
+				"kind": "archive",
+				"url": "https://github.com/casey/just/releases/download/1.51.0/just-1.51.0-aarch64-apple-darwin.tar.gz",
+				"file": "just",
+				"sha256": "61e3f1b8a545ff064b091eab4b6e14f8cc743ff15549be293b1e92f5b1467002",
+				"os": "macos",
+				"cpu": "arm64"
+			},
+			{
+				"kind": "archive",
+				"url": "https://github.com/casey/just/releases/download/1.51.0/just-1.51.0-aarch64-unknown-linux-musl.tar.gz",
+				"file": "just",
+				"sha256": "ed7ec466b77709198fd4afed253dba0270203ba5eb1c006bee2b0139090284f5",
+				"os": "linux",
+				"cpu": "arm64"
+			},
+			{
+				"kind": "archive",
+				"url": "https://github.com/casey/just/releases/download/1.51.0/just-1.51.0-x86_64-unknown-linux-musl.tar.gz",
+				"file": "just",
+				"sha256": "c8f085ca3e885723c341d06243fc291b5abfdc8bbe3b2c076b117de490387b59",
+				"os": "linux",
+				"cpu": "x86_64"
+			}
+		]
+	},
+	"just-lsp": {
+		"binaries": [
+			{
+				"kind": "archive",
+				"url": "https://github.com/terror/just-lsp/releases/download/0.4.5/just-lsp-0.4.5-aarch64-apple-darwin.tar.gz",
+				"file": "just-lsp",
+				"sha256": "db8ddaa732ab674217a1eb069ce91c16f319aaa9131845fb4b56f72b46e6d6e7",
+				"os": "macos",
+				"cpu": "arm64"
+			},
+			{
+				"kind": "archive",
+				"url": "https://github.com/terror/just-lsp/releases/download/0.4.5/just-lsp-0.4.5-aarch64-unknown-linux-musl.tar.gz",
+				"file": "just-lsp",
+				"sha256": "09848eb8ff89b6af8ef60d70a22a2363b7591d293088c88b1fb34a4fdd70dfcc",
+				"os": "linux",
+				"cpu": "arm64"
+			},
+			{
+				"kind": "archive",
+				"url": "https://github.com/terror/just-lsp/releases/download/0.4.5/just-lsp-0.4.5-x86_64-unknown-linux-musl.tar.gz",
+				"file": "just-lsp",
+				"sha256": "2bac1289cc9662363bba41586f2e50f05360d954842e200be192acbde5fa02e4",
+				"os": "linux",
+				"cpu": "x86_64"
+			}
+		]
+	},
+	"multitool": {
+		"binaries": [
+			{
+				"kind": "archive",
+				"url": "https://github.com/bazel-contrib/multitool/releases/download/v0.9.0/multitool-aarch64-apple-darwin.tar.xz",
+				"file": "multitool-aarch64-apple-darwin/multitool",
+				"sha256": "8f5e0cd033b0fcc128c762f8d527110433523da378619cecf40e91c1df5c0686",
+				"os": "macos",
+				"cpu": "arm64"
+			},
+			{
+				"kind": "archive",
+				"url": "https://github.com/bazel-contrib/multitool/releases/download/v0.9.0/multitool-aarch64-unknown-linux-gnu.tar.xz",
+				"file": "multitool-aarch64-unknown-linux-gnu/multitool",
+				"sha256": "693b66def2d8dacdfcb5a011b7c32a8e89a13bdc031db8dc40c0759a38253103",
+				"os": "linux",
+				"cpu": "arm64"
+			},
+			{
+				"kind": "archive",
+				"url": "https://github.com/bazel-contrib/multitool/releases/download/v0.9.0/multitool-x86_64-unknown-linux-gnu.tar.xz",
+				"file": "multitool-x86_64-unknown-linux-gnu/multitool",
+				"sha256": "34dc5968dad458a4050ebde58e484ebb7c624a119e4031347683eeb80922e6df",
+				"os": "linux",
+				"cpu": "x86_64"
+			}
+		]
+	}
 }

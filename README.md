@@ -23,7 +23,7 @@ At the root, we have the following directories.
 ### Common directory
 
 Contains all cross-cutting code that are **not owned by a single domain or experience**.
-Consider everything here as *infrastructure-level* or *shared dependency* code:
+Consider everything here as _infrastructure-level_ or _shared dependency_ code:
 reusable, versioned, and stable.
 
 Common code follows these design principles.
